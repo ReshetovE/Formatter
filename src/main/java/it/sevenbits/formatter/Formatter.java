@@ -12,6 +12,6 @@ public class Formatter {
      * @param args command line args, ignored
      */
     public static void main(final String[] args){
-
+        System.out.println("Format");
     }
 }
