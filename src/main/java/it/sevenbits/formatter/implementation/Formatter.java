@@ -3,7 +3,6 @@ package it.sevenbits.formatter.implementation;
 import it.sevenbits.formatter.core.IFormatter;
 import it.sevenbits.formatter.core.IReader;
 import it.sevenbits.formatter.core.IWriter;
-import it.sevenbits.formatter.file_io.Writer;
 
 import java.io.IOException;
 

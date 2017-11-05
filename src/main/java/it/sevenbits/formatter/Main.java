@@ -19,10 +19,10 @@ public class Main {
      * @throws IOException Failed or interrupted I/O operations.
      */
     public static void main(final String[] args) throws IOException {
-        IFormatter formatter = new Formatter();
-        IReader in = new Reader("in.txt");
-        IWriter out = new Writer("out.txt");
-        formatter.format(in, out);
+        IFormatter format = new Formatter();
+        IReader in = new Reader(args[0]);
+        IWriter out = new Writer(args[1]);
+        format.format(in, out);
         out.close();
         in.close();
     }
