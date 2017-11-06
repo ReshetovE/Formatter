@@ -1,21 +1,20 @@
 package it.sevenbits.formatter.core;
 
-import java.io.IOException;
-
 /**
  * FileWriter interface.
  */
 public interface IWriter {
+
     /**
      * Write to file.
-     * @param s Char to write.
-     * @throws IOException Failed or interrupted I/O operations.
+     * @param s String to write.
+     * @throws WriterException Failed or interrupted I/O operations.
      */
-    void write(String s) throws IOException;
+    void write(String s) throws WriterException;
 
     /**
      * Close file.
-     * @throws IOException Failed or interrupted I/O operations.
+     * @throws WriterException Failed or interrupted I/O operations.
      */
-    void close() throws IOException;
+    void close() throws WriterException;
 }

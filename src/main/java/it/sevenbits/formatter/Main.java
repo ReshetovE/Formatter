@@ -1,24 +1,23 @@
 package it.sevenbits.formatter;
 
-import it.sevenbits.formatter.core.IFormatter;
-import it.sevenbits.formatter.core.IReader;
-import it.sevenbits.formatter.core.IWriter;
-import it.sevenbits.formatter.file_io.FileReader;
-import it.sevenbits.formatter.file_io.FileWriter;
-import it.sevenbits.formatter.implementation.Formatter;
-
-import java.io.IOException;
+import it.sevenbits.formatter.core.*;
+import it.sevenbits.formatter.file_io.*;
+import it.sevenbits.formatter.implementation.*;
 
 /**
  * Main implementation.
  */
 public class Main {
+    
     /**
-     * Start point to program.
+     Start point to program.
      * @param args command line args, ignored.
-     * @throws IOException Failed or interrupted I/O operations.
+     * "Throw" - part of the contract.
+     * @throws ReaderException throws ReaderException.
+     * @throws FormatterException throws FormatterException.
+     * @throws WriterException throws WriterException.
      */
-    public static void main(final String[] args) throws IOException {
+    public static void main(final String[] args) throws ReaderException, FormatterException, WriterException {
         IFormatter format = new Formatter();
         IReader in = new FileReader(args[0]);
         IWriter out = new FileWriter(args[1]);

@@ -1,6 +1,7 @@
 package it.sevenbits.formatter.file_io;
 
 import it.sevenbits.formatter.core.IReader;
+import it.sevenbits.formatter.core.ReaderException;
 
 import java.io.*;
 
@@ -14,55 +15,55 @@ public class FileReader implements IReader {
     /**
      * Constructor FileReader.
      * @param path The path to the file.
-     * @throws FileNotFoundException If file not found.
+     * @throws ReaderException If file not found.
      */
-    public FileReader(final String path) throws FileNotFoundException {
+    public FileReader(final String path) throws ReaderException {
         try {
             reader = new BufferedReader(new java.io.FileReader(path));
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException();
+            throw new ReaderException("File not found", e);
         }
     }
 
     /**
      * Checker char.
      * @return Checker last character.
-     * @throws IOException  Failed or interrupted I/O operations.
+     * @throws ReaderException  Failed or interrupted I/O operations.
      */
-    public boolean hasChars() throws IOException {
+    public boolean hasChars() throws ReaderException {
         try {
             reader.mark(2);
             int buf = reader.read();
             reader.reset();
             return (-1 != buf);
         } catch (IOException e) {
-            throw new IOException();
+            throw new ReaderException("Error IO", e);
         }
     }
 
     /**
      * ReadChar method.
      * @return Read character.
-     * @throws IOException Failed or interrupted I/O operations.
+     * @throws ReaderException Failed or interrupted I/O operations.
      */
-    public char readChar() throws IOException {
+    public char readChar() throws ReaderException {
         try {
             reader.mark(1);
             return (char) reader.read();
         } catch (IOException e) {
-            throw new IOException();
+            throw new ReaderException("Error IO", e);
         }
     }
 
     /**
      * Close file method.
-     * @throws IOException Failed or interrupted I/O operations.
+     * @throws ReaderException Failed or interrupted I/O operations.
      */
-    public void close() throws IOException {
+    public void close() throws ReaderException {
         try {
             reader.close();
         } catch (IOException e){
-            throw new IOException();
+            throw new ReaderException("Error IO", e);
         }
     }
 }
