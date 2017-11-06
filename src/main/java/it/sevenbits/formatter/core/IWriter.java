@@ -3,7 +3,7 @@ package it.sevenbits.formatter.core;
 import java.io.IOException;
 
 /**
- * Writer interface.
+ * FileWriter interface.
  */
 public interface IWriter {
     /**

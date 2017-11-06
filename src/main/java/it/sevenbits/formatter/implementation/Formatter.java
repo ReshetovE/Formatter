@@ -13,7 +13,7 @@ public class Formatter implements IFormatter {
 
     /**
      * Method Formatter.
-     * @param in Input interface Reader.
+     * @param in Input interface FileReader.
      * @throws IOException Failed or interrupted I/O operations.
      */
     public void format(final IReader in, final IWriter out) throws IOException {

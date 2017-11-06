@@ -3,7 +3,7 @@ package it.sevenbits.formatter.core;
 import java.io.IOException;
 
 /**
- * Reader interface.
+ * FileReader interface.
  */
 public interface IReader {
     /**

@@ -3,8 +3,8 @@ package it.sevenbits.formatter;
 import it.sevenbits.formatter.core.IFormatter;
 import it.sevenbits.formatter.core.IReader;
 import it.sevenbits.formatter.core.IWriter;
-import it.sevenbits.formatter.file_io.Reader;
-import it.sevenbits.formatter.file_io.Writer;
+import it.sevenbits.formatter.file_io.FileReader;
+import it.sevenbits.formatter.file_io.FileWriter;
 import it.sevenbits.formatter.implementation.Formatter;
 
 import java.io.IOException;
@@ -20,8 +20,8 @@ public class Main {
      */
     public static void main(final String[] args) throws IOException {
         IFormatter format = new Formatter();
-        IReader in = new Reader(args[0]);
-        IWriter out = new Writer(args[1]);
+        IReader in = new FileReader(args[0]);
+        IWriter out = new FileWriter(args[1]);
         format.format(in, out);
         out.close();
         in.close();

@@ -5,19 +5,19 @@ import it.sevenbits.formatter.core.IWriter;
 import java.io.*;
 
 /**
- * Writer implementation.
+ * FileWriter implementation.
  */
-public class Writer implements IWriter {
+public class FileWriter implements IWriter {
     private BufferedWriter writer = null;
 
     /**
-     * Constructor Writer.
+     * Constructor FileWriter.
      * @param path The path to the file.
      * @throws IOException Failed or interrupted I/O operations.
      */
-    public Writer(final String path) throws IOException {
+    public FileWriter(final String path) throws IOException {
         try {
-            writer = new BufferedWriter(new FileWriter(path));
+            writer = new BufferedWriter(new java.io.FileWriter(path));
         } catch (IOException e) {
             throw new IOException();
         }

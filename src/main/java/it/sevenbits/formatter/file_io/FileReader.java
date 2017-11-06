@@ -5,20 +5,20 @@ import it.sevenbits.formatter.core.IReader;
 import java.io.*;
 
 /**
- * Reader implementation.
+ * FileReader implementation.
  */
-public class Reader implements IReader {
+public class FileReader implements IReader {
 
     private BufferedReader reader = null;
 
     /**
-     * Constructor Reader.
+     * Constructor FileReader.
      * @param path The path to the file.
      * @throws FileNotFoundException If file not found.
      */
-    public Reader(final String path) throws FileNotFoundException {
+    public FileReader(final String path) throws FileNotFoundException {
         try {
-            reader = new BufferedReader(new FileReader(path));
+            reader = new BufferedReader(new java.io.FileReader(path));
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException();
         }
