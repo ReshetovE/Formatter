@@ -2,15 +2,14 @@ package it.sevenbits.formatter.file_io;
 
 import it.sevenbits.formatter.core.IReader;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Reader implementation.
  */
 public class Reader implements IReader {
-    private FileInputStream inputStream;
+
+    private BufferedReader reader = null;
 
     /**
      * Constructor Reader.
@@ -18,7 +17,11 @@ public class Reader implements IReader {
      * @throws FileNotFoundException If file not found.
      */
     public Reader(final String path) throws FileNotFoundException {
-            inputStream = new FileInputStream(path);
+        try {
+            reader = new BufferedReader(new FileReader(path));
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException();
+        }
     }
 
     /**
@@ -27,7 +30,14 @@ public class Reader implements IReader {
      * @throws IOException  Failed or interrupted I/O operations.
      */
     public boolean hasChars() throws IOException {
-            return inputStream.available() != 0;
+        try {
+            reader.mark(2);
+            int buf = reader.read();
+            reader.reset();
+            return (-1 != buf);
+        } catch (IOException e) {
+            throw new IOException();
+        }
     }
 
     /**
@@ -36,7 +46,12 @@ public class Reader implements IReader {
      * @throws IOException Failed or interrupted I/O operations.
      */
     public char readChar() throws IOException {
-            return (char) inputStream.read();
+        try {
+            reader.mark(1);
+            return (char) reader.read();
+        } catch (IOException e) {
+            throw new IOException();
+        }
     }
 
     /**
@@ -44,6 +59,10 @@ public class Reader implements IReader {
      * @throws IOException Failed or interrupted I/O operations.
      */
     public void close() throws IOException {
-        inputStream.close();
+        try {
+            reader.close();
+        } catch (IOException e){
+            throw new IOException();
+        }
     }
 }
