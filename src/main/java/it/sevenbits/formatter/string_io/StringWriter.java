@@ -19,6 +19,14 @@ public class StringWriter implements IWriter {
      * No used.
      */
     public void close() {
-       // System.out.println(str);
+
+    }
+
+    /**
+     * returns contained string
+     * @return string
+     */
+    public String getString() {
+        return str;
     }
 }
