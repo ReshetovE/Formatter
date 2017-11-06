@@ -2,23 +2,25 @@ package it.sevenbits.formatter.file_io;
 
 import it.sevenbits.formatter.core.IWriter;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Writer implementation.
  */
 public class Writer implements IWriter {
-    private FileOutputStream outputStream;
+    private BufferedWriter writer = null;
 
     /**
      * Constructor Writer.
      * @param path The path to the file.
-     * @throws FileNotFoundException If file not found.
+     * @throws IOException Failed or interrupted I/O operations.
      */
-    public Writer(final String path) throws FileNotFoundException {
-            outputStream = new FileOutputStream(path);
+    public Writer(final String path) throws IOException {
+        try {
+            writer = new BufferedWriter(new FileWriter(path));
+        } catch (IOException e) {
+            throw new IOException();
+        }
     }
 
 
@@ -28,7 +30,11 @@ public class Writer implements IWriter {
      * @throws IOException Failed or interrupted I/O operations.
      */
     public void write(final String s) throws IOException {
-        outputStream.write(s.getBytes());
+        try {
+            writer.write(s);
+        } catch (IOException e) {
+            throw new IOException();
+        }
     }
 
     /**
@@ -36,6 +42,10 @@ public class Writer implements IWriter {
      * @throws IOException Failed or interrupted I/O operations.
      */
     public void close() throws IOException {
-
+        try {
+            writer.close();
+        } catch (IOException e) {
+            throw new IOException();
+        }
     }
 }
