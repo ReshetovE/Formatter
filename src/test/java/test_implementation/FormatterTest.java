@@ -16,15 +16,23 @@ public class FormatterTest {
     public void TestBrackets() throws ReaderException, FormatterException, WriterException {
         in = new StringReader("fdfddfs;fdsf;fdsa;afd");
         format.format(in, out);
-        String expected ="nullfdfddfs;\nfdsf;\nfdsa;\nafd";
-        assertEquals("String formatting went wrong", expected, out.getString());
+        String sample ="fdfddfs;\nfdsf;\nfdsa;\nafd";
+        assertEquals("Error test of brackers", sample, out.getString());
     }
 
     @Test
-    public void TestEnterSpace() throws ReaderException, FormatterException, WriterException {
-        in = new StringReader("sfd{fsda{dsf");
+    public void TestOpenBrace() throws ReaderException, FormatterException, WriterException {
+        in = new StringReader("sfd{fsda{d;sf");
         format.format(in, out);
-        String expected ="nullsfd{\n    fsda{\n        dsf";
-        assertEquals("String formatting went wrong", expected, out.getString());
+        String sample ="sfd{\n    fsda{\n        d;\n        sf";
+        assertEquals("Error test of open brace", sample, out.getString());
+    }
+
+    @Test
+    public void TestCloseBrace() throws ReaderException, FormatterException, WriterException {
+        in = new StringReader("f{dfgdfg{dsf;}}");
+        format.format(in, out);
+        String sample ="f{\n    dfgdfg{\n        dsf;\n    }\n}\n";
+        assertEquals("Error test of close brace", sample, out.getString());
     }
 }

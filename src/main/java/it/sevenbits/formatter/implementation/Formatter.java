@@ -15,21 +15,36 @@ public class Formatter implements IFormatter {
     public void format(final IReader in, final IWriter out) throws FormatterException {
         try {
             int b = 0;
+            boolean checkEnter = false;
+
             while (in.hasChars()) {
                 char c = in.readChar();
                 switch (c) {
                     case ';':
                         out.write(";");
                         out.write("\n");
+                        checkEnter = true;
                         break;
                     case '{':
                         b++;
                         out.write("{\n");
-                        for (int i = 0; i < b * 4; i++) {
+                        checkEnter = true;
+                        break;
+                    case '}':
+                        for (int i = 0; i < (b - 1) * 4; i++) {
                             out.write(" ");
                         }
+                        out.write("}\n");
+                        checkEnter = true;
+                        b--;
                         break;
                     default:
+                        if(checkEnter) {
+                            for (int i = 0; i < b * 4; i++) {
+                                out.write(" ");
+                            }
+                            checkEnter = false;
+                        }
                         String s = "" + c;
                         out.write(s);
                         break;

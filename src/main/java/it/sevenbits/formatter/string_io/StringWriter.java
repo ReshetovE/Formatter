@@ -4,7 +4,7 @@ import it.sevenbits.formatter.core.IWriter;
 
 public class StringWriter implements IWriter {
 
-    private String str;
+    private String str = "";
 
     /**
      * Write to string;
