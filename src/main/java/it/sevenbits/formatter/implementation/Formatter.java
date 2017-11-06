@@ -14,16 +14,26 @@ public class Formatter implements IFormatter {
      */
     public void format(final IReader in, final IWriter out) throws FormatterException {
         try {
+            int b = 0;
             while (in.hasChars()) {
                 char c = in.readChar();
-                if(c == ';') {
-                    out.write(";");
-                    out.write("\n");
-                } else {
-                    String s = "" + c;
-                    out.write(s);
+                switch (c) {
+                    case ';':
+                        out.write(";");
+                        out.write("\n");
+                        break;
+                    case '{':
+                        b++;
+                        out.write("{\n");
+                        for (int i = 0; i < b * 4; i++) {
+                            out.write(" ");
+                        }
+                        break;
+                    default:
+                        String s = "" + c;
+                        out.write(s);
+                        break;
                 }
-
             }
         } catch (ReaderException e) {
             throw new FormatterException("Method format failed", e);
