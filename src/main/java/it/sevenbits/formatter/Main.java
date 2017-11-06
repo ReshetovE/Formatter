@@ -8,7 +8,7 @@ import it.sevenbits.formatter.implementation.*;
  * Main implementation.
  */
 public class Main {
-    
+
     /**
      Start point to program.
      * @param args command line args, ignored.

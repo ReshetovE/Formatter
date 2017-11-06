@@ -27,7 +27,7 @@ public class FileWriter implements IWriter {
 
     /**
      * Write to file.
-     * @param s Char to write.
+     * @param s String to write.
      * @throws WriterException Failed or interrupted I/O operations.
      */
     public void write(final String s) throws WriterException {
