@@ -3,7 +3,7 @@ package it.sevenbits.formatter.core;
 /**
  * FileWriter interface.
  */
-public interface IWriter {
+public interface IWriter extends ICloseble{
 
     /**
      * Write to file.

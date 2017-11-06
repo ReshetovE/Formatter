@@ -22,4 +22,8 @@ public class FormatterException extends Exception{
     public FormatterException(final String s, final WriterException e) {
         super(s, e);
     }
+
+    public FormatterException(final Exception e) {
+        super(e);
+    }
 }

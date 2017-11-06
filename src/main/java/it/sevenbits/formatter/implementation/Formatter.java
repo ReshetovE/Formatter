@@ -31,4 +31,9 @@ public class Formatter implements IFormatter {
             throw new FormatterException("Method format failed", e);
         }
     }
+
+    @Override
+    public void close() throws Exception {
+
+    }
 }

@@ -3,7 +3,7 @@ package it.sevenbits.formatter.core;
 /**
  * FileReader interface.
  */
-public interface IReader {
+public interface IReader extends ICloseble{
 
     /**
      * Checker char.
