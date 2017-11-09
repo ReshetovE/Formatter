@@ -1,5 +1,7 @@
 package it.sevenbits.formatter.file_io;
 
+import it.sevenbits.formatter.core.CloseException;
+import it.sevenbits.formatter.core.IClosable;
 import it.sevenbits.formatter.core.IWriter;
 import it.sevenbits.formatter.core.WriterException;
 
@@ -9,7 +11,7 @@ import java.io.IOException;
 /**
  * FileWriter implementation.
  */
-public class FileWriter implements IWriter {
+public class FileWriter implements IWriter, IClosable {
 
     private BufferedWriter writer = null;
 
@@ -41,13 +43,13 @@ public class FileWriter implements IWriter {
 
     /**
      * Close file.
-     * @throws WriterException Failed or interrupted I/O operations.
+     * @throws CloseException Failed or interrupted I/O operations.
      */
-    public void close() throws WriterException {
+    public void close() throws CloseException {
         try {
             writer.close();
         } catch (IOException e) {
-            throw new WriterException("Error IO", e);
+            throw new CloseException("Error", e);
         }
     }
 }

@@ -3,7 +3,7 @@ package it.sevenbits.formatter.core;
 /**
  * FileReader interface.
  */
-public interface IReader extends IClosable {
+public interface IReader {
 
     /**
      * Checker char.
@@ -18,10 +18,4 @@ public interface IReader extends IClosable {
      * @throws ReaderException Failed or interrupted I/O operations.
      */
     char readChar() throws ReaderException;
-
-    /**
-     * Close file.
-     * @throws ReaderException Failed or interrupted I/O operations.
-     */
-    void close() throws ReaderException;
 }

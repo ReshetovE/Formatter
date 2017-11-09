@@ -3,7 +3,7 @@ package it.sevenbits.formatter.core;
 /**
  * FileWriter interface.
  */
-public interface IWriter extends IClosable {
+public interface IWriter {
 
     /**
      * Write to file.
@@ -11,10 +11,4 @@ public interface IWriter extends IClosable {
      * @throws WriterException Failed or interrupted I/O operations.
      */
     void write(String s) throws WriterException;
-
-    /**
-     * Close file.
-     * @throws WriterException Failed or interrupted I/O operations.
-     */
-    void close() throws WriterException;
 }

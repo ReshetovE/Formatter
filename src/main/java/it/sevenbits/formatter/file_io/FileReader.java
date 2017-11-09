@@ -1,5 +1,7 @@
 package it.sevenbits.formatter.file_io;
 
+import it.sevenbits.formatter.core.CloseException;
+import it.sevenbits.formatter.core.IClosable;
 import it.sevenbits.formatter.core.IReader;
 import it.sevenbits.formatter.core.ReaderException;
 
@@ -10,7 +12,7 @@ import java.io.IOException;
 /**
  * FileReader implementation.
  */
-public class FileReader implements IReader {
+public class FileReader implements IReader, IClosable {
 
     private BufferedReader reader = null;
 
@@ -59,13 +61,13 @@ public class FileReader implements IReader {
 
     /**
      * Close file method.
-     * @throws ReaderException Failed or interrupted I/O operations.
+     * @throws CloseException Failed or interrupted I/O operations.
      */
-    public void close() throws ReaderException {
+    public void close() throws CloseException {
         try {
             reader.close();
         } catch (IOException e) {
-            throw new ReaderException("Error IO", e);
+            throw new CloseException("Error", e);
         }
     }
 }
