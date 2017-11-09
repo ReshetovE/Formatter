@@ -2,6 +2,9 @@ package it.sevenbits.formatter.string_io;
 
 import it.sevenbits.formatter.core.IWriter;
 
+/**
+ * StringWriter implementation.
+ */
 public class StringWriter implements IWriter {
 
     private String str = "";

@@ -3,14 +3,14 @@ package it.sevenbits.formatter.core;
 /**
  * FileReader interface.
  */
-public interface IReader extends ICloseble{
+public interface IReader extends IClosable {
 
     /**
      * Checker char.
      * @return Are there next char?
      * @throws ReaderException Failed or interrupted I/O operations.
      */
-    boolean hasChars() throws ReaderException ;
+    boolean hasChars() throws ReaderException;
 
     /**
      * ReadChar method.

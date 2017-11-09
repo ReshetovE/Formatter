@@ -3,7 +3,7 @@ package it.sevenbits.formatter.core;
 /**
  * Exception for FormatterClass.
  */
-public class FormatterException extends Exception{
+public class FormatterException extends Exception {
 
     /**
      * ReaderException throw FormatterException.
@@ -23,6 +23,10 @@ public class FormatterException extends Exception{
         super(s, e);
     }
 
+    /**
+     * FormatterException
+     * @param e Exception
+     */
     public FormatterException(final Exception e) {
         super(e);
     }

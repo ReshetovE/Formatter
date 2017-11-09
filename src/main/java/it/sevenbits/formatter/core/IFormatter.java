@@ -3,7 +3,7 @@ package it.sevenbits.formatter.core;
 /**
  * Formatter interface.
  */
-public interface IFormatter extends ICloseble {
+public interface IFormatter extends IClosable {
 
     /**
      * Method formatter.

@@ -1,11 +1,13 @@
 package it.sevenbits.formatter.core;
 
-import java.io.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Exception for Reader.
  */
-public class ReaderException extends Exception{
+public class ReaderException extends Exception {
 
     /**
      * ReaderException file not found.

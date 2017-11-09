@@ -3,7 +3,8 @@ package it.sevenbits.formatter.file_io;
 import it.sevenbits.formatter.core.IWriter;
 import it.sevenbits.formatter.core.WriterException;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 /**
  * FileWriter implementation.

@@ -3,7 +3,9 @@ package it.sevenbits.formatter.file_io;
 import it.sevenbits.formatter.core.IReader;
 import it.sevenbits.formatter.core.ReaderException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * FileReader implementation.
@@ -62,7 +64,7 @@ public class FileReader implements IReader {
     public void close() throws ReaderException {
         try {
             reader.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new ReaderException("Error IO", e);
         }
     }
