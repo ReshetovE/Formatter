@@ -1,7 +1,6 @@
-package test_implementation;
+package it.sevenbits.formatter.implementation;
 
 import it.sevenbits.formatter.core.*;
-import it.sevenbits.formatter.implementation.Formatter;
 import it.sevenbits.formatter.string_io.StringReader;
 import it.sevenbits.formatter.string_io.StringWriter;
 import org.junit.Test;

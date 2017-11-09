@@ -8,7 +8,7 @@ import it.sevenbits.formatter.core.ReaderException;
 import it.sevenbits.formatter.core.WriterException;
 
 /**
- * Formatter implementation.
+ * Formatter it.sevenbits.formatter.implementation.
  */
 public class Formatter implements IFormatter {
 
