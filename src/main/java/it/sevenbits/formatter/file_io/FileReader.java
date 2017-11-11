@@ -8,6 +8,7 @@ import it.sevenbits.formatter.core.ReaderException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -30,7 +31,7 @@ public class FileReader implements IReader, IClosable {
         try {
             FileSystem fileSystem = FileSystems.getDefault();
             Path path = fileSystem.getPath(pathFile);
-            reader = new InputStreamReader(Files.newInputStream(path), "UTF8");
+            reader = new InputStreamReader(Files.newInputStream(path), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new ReaderException("File not found", e);
         }
