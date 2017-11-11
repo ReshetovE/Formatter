@@ -6,28 +6,11 @@ package it.sevenbits.formatter.core;
 public class FormatterException extends Exception {
 
     /**
-     * ReaderException throw FormatterException.
+     * ReaderException for Formatter.
      * @param s Message Exception.
      * @param e Exception.
      */
-    public FormatterException(final String s, final ReaderException e) {
+    public FormatterException(final String s, final Exception e) {
         super(s, e);
-    }
-
-    /**
-     * WriterException throw FormatterException.
-     * @param s Message Exception.
-     * @param e Exception.
-     */
-    public FormatterException(final String s, final WriterException e) {
-        super(s, e);
-    }
-
-    /**
-     * FormatterException
-     * @param e Exception
-     */
-    public FormatterException(final Exception e) {
-        super(e);
     }
 }

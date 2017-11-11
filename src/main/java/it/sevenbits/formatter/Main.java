@@ -7,7 +7,7 @@ import it.sevenbits.formatter.file_io.FileWriter;
 import it.sevenbits.formatter.implementation.Formatter;
 
 /**
- * Main it.sevenbits.formatter.implementation.
+ * Main implementation.
  */
 public class Main {
 
