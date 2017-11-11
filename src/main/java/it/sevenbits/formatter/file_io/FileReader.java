@@ -5,26 +5,33 @@ import it.sevenbits.formatter.core.IClosable;
 import it.sevenbits.formatter.core.IReader;
 import it.sevenbits.formatter.core.ReaderException;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * FileReader implementation.
  */
 public class FileReader implements IReader, IClosable {
 
-    private BufferedReader reader = null;
+    private Reader reader;
+    private int idChar;
 
     /**
      * Constructor FileReader.
-     * @param path The path to the file.
+     * @param pathFile The path to the file.
      * @throws ReaderException If file not found.
      */
-    public FileReader(final String path) throws ReaderException {
+    public FileReader(final String pathFile) throws ReaderException {
         try {
-            reader = new BufferedReader(new java.io.FileReader(path));
-        } catch (FileNotFoundException e) {
+            FileSystem fileSystem = FileSystems.getDefault();
+            Path path = fileSystem.getPath(pathFile);
+            reader = new InputStreamReader(Files.newInputStream(path), "UTF8");
+        } catch (IOException e) {
             throw new ReaderException("File not found", e);
         }
     }
@@ -36,10 +43,8 @@ public class FileReader implements IReader, IClosable {
      */
     public boolean hasChars() throws ReaderException {
         try {
-            reader.mark(2);
-            int buf = reader.read();
-            reader.reset();
-            return (-1 != buf);
+            idChar = reader.read();
+            return idChar > -1;
         } catch (IOException e) {
             throw new ReaderException("Error IO", e);
         }
@@ -51,12 +56,7 @@ public class FileReader implements IReader, IClosable {
      * @throws ReaderException Failed or interrupted I/O operations.
      */
     public char readChar() throws ReaderException {
-        try {
-            reader.mark(1);
-            return (char) reader.read();
-        } catch (IOException e) {
-            throw new ReaderException("Error IO", e);
-        }
+        return (char) idChar;
     }
 
     /**
