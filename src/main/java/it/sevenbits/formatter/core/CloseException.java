@@ -10,7 +10,7 @@ public class CloseException extends Exception {
      * @param s Message Exception.
      * @param e Exception.
      */
-    public CloseException(final String s, final Exception e) {
+    public CloseException(final String s, final Throwable e) {
         super(s, e);
     }
 }

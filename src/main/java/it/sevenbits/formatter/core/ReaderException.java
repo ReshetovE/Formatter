@@ -10,7 +10,7 @@ public class ReaderException extends Exception {
      * @param s Message Exception.
      * @param e Exception.
      */
-    public ReaderException(final String s, final Exception e) {
+    public ReaderException(final String s, final Throwable e) {
         super(s, e);
     }
 }

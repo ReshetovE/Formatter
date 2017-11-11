@@ -10,7 +10,7 @@ public class FormatterException extends Exception {
      * @param s Message Exception.
      * @param e Exception.
      */
-    public FormatterException(final String s, final Exception e) {
+    public FormatterException(final String s, final Throwable e) {
         super(s, e);
     }
 }

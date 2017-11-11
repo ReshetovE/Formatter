@@ -10,7 +10,7 @@ public class WriterException extends Exception {
      * @param s Message Exception.
      * @param e Exception.
      */
-    public WriterException(final String s, final Exception e) {
+    public WriterException(final String s, final Throwable e) {
         super(s, e);
     }
 }
