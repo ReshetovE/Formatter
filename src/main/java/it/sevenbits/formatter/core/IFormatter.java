@@ -7,9 +7,9 @@ public interface IFormatter {
 
     /**
      * Method formatter.
-     * @param in Input interface FileReader.
+     * @param lexer Interface Lexer.
      * @param out Input interface FileWriter.
      * @throws FormatterException ReaderException/WriterException.
      */
-    void format(IReader in, IWriter out) throws FormatterException;
+    void format(ILexer lexer, IWriter out) throws FormatterException;
 }

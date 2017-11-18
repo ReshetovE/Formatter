@@ -2,42 +2,44 @@ package it.sevenbits.formatter.implementation;
 
 import it.sevenbits.formatter.core.FormatterException;
 import it.sevenbits.formatter.core.IFormatter;
-import it.sevenbits.formatter.core.IReader;
+import it.sevenbits.formatter.core.ILexer;
+import it.sevenbits.formatter.core.IToken;
 import it.sevenbits.formatter.core.IWriter;
 import it.sevenbits.formatter.core.ReaderException;
 import it.sevenbits.formatter.core.WriterException;
 
 /**
- * Formatter it.sevenbits.formatter.implementation.
+ * Formatter implementation.
  */
 public class Formatter implements IFormatter {
 
     /**
      * Method Formatter.
-     * @param in Input interface FileReader.
+     * @param lexer Interface Lexer.
      * @param out Output interface FileReader.
      * @throws FormatterException ReaderException/WriterException.
      */
-    public void format(final IReader in, final IWriter out) throws FormatterException {
+    public void format(final ILexer lexer, final IWriter out) throws FormatterException {
         try {
             final int indentSize = 4;
             int b = 0;
             boolean checkEnter = false;
 
-            while (in.hasChars()) {
-                char c = in.nextChar();
-                switch (c) {
-                    case ';':
+            while (lexer.hasMoreTokens()) {
+                IToken token = lexer.readToken();
+                String lexeme = token.getLexeme();
+                switch (lexeme) {
+                    case ";":
                         out.write(";");
                         out.write("\n");
                         checkEnter = true;
                         break;
-                    case '{':
+                    case "{":
                         b++;
                         out.write("{\n");
                         checkEnter = true;
                         break;
-                    case '}':
+                    case "}":
                         for (int i = 0; i < (b - 1) * indentSize; i++) {
                             out.write(" ");
                         }
@@ -52,7 +54,7 @@ public class Formatter implements IFormatter {
                             }
                             checkEnter = false;
                         }
-                        String s = "" + c;
+                        String s = "" + lexeme;
                         out.write(s);
                         break;
                 }
