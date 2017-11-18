@@ -33,7 +33,7 @@ public class StringReader implements IReader {
      * @return Read character.
      * @throws ReaderException Failed or interrupted I/O operations.
      */
-    public char readChar() throws ReaderException {
+    public char nextChar() throws ReaderException {
         return str.charAt(index++);
     }
 }

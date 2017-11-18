@@ -25,7 +25,7 @@ public class Formatter implements IFormatter {
             boolean checkEnter = false;
 
             while (in.hasChars()) {
-                char c = in.readChar();
+                char c = in.nextChar();
                 switch (c) {
                     case ';':
                         out.write(";");

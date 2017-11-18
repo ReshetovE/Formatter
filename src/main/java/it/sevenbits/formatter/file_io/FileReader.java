@@ -20,7 +20,7 @@ import java.nio.file.Path;
 public class FileReader implements IReader, IClosable {
 
     private Reader reader;
-    private int idChar;
+    private int readChar = -1;
 
     /**
      * Constructor FileReader.
@@ -32,6 +32,7 @@ public class FileReader implements IReader, IClosable {
             FileSystem fileSystem = FileSystems.getDefault();
             Path path = fileSystem.getPath(pathFile);
             reader = new InputStreamReader(Files.newInputStream(path), StandardCharsets.UTF_8);
+            readChar = reader.read();
         } catch (IOException e) {
             throw new ReaderException("File not found", e);
         }
@@ -43,12 +44,7 @@ public class FileReader implements IReader, IClosable {
      * @throws ReaderException  Failed or interrupted I/O operations.
      */
     public boolean hasChars() throws ReaderException {
-        try {
-            idChar = reader.read();
-            return idChar > -1;
-        } catch (IOException e) {
-            throw new ReaderException("Error IO", e);
-        }
+            return readChar > -1;
     }
 
     /**
@@ -56,8 +52,14 @@ public class FileReader implements IReader, IClosable {
      * @return Read character.
      * @throws ReaderException Failed or interrupted I/O operations.
      */
-    public char readChar() throws ReaderException {
-        return (char) idChar;
+    public char nextChar() throws ReaderException {
+        int prevChar = readChar;
+        try {
+            readChar = reader.read();
+        } catch (IOException e) {
+            throw new ReaderException("File not found", e);
+        }
+        return (char) prevChar;
     }
 
     /**

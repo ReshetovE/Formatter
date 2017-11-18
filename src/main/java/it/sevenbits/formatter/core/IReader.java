@@ -17,5 +17,5 @@ public interface IReader {
      * @return New symbol.
      * @throws ReaderException Failed or interrupted I/O operations.
      */
-    char readChar() throws ReaderException;
+    char nextChar() throws ReaderException;
 }
