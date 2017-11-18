@@ -22,7 +22,7 @@ public class Formatter implements IFormatter {
     public void format(final ILexer lexer, final IWriter out) throws FormatterException {
         try {
             final int indentSize = 4;
-            int b = 0;
+            int enclosure = 0;
             boolean checkEnter = false;
 
             while (lexer.hasMoreTokens()) {
@@ -35,21 +35,21 @@ public class Formatter implements IFormatter {
                         checkEnter = true;
                         break;
                     case "{":
-                        b++;
+                        enclosure++;
                         out.write("{\n");
                         checkEnter = true;
                         break;
                     case "}":
-                        for (int i = 0; i < (b - 1) * indentSize; i++) {
+                        for (int i = 0; i < (enclosure - 1) * indentSize; i++) {
                             out.write(" ");
                         }
                         out.write("}\n");
                         checkEnter = true;
-                        b--;
+                        enclosure--;
                         break;
                     default:
                         if (checkEnter) {
-                            for (int i = 0; i < b * indentSize; i++) {
+                            for (int i = 0; i < enclosure * indentSize; i++) {
                                 out.write(" ");
                             }
                             checkEnter = false;
