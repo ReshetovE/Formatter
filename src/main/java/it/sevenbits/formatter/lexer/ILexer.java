@@ -1,4 +1,7 @@
-package it.sevenbits.formatter.core;
+package it.sevenbits.formatter.lexer;
+
+import it.sevenbits.formatter.implementation.core.IToken;
+import it.sevenbits.formatter.io.core_io.ReaderException;
 
 /**
  * Lexer interface.

@@ -1,12 +1,12 @@
 package it.sevenbits.formatter.implementation;
 
-import it.sevenbits.formatter.core.FormatterException;
-import it.sevenbits.formatter.core.IFormatter;
-import it.sevenbits.formatter.core.ILexer;
-import it.sevenbits.formatter.core.IToken;
-import it.sevenbits.formatter.core.IWriter;
-import it.sevenbits.formatter.core.ReaderException;
-import it.sevenbits.formatter.core.WriterException;
+import it.sevenbits.formatter.implementation.core.FormatterException;
+import it.sevenbits.formatter.implementation.core.IFormatter;
+import it.sevenbits.formatter.lexer.ILexer;
+import it.sevenbits.formatter.implementation.core.IToken;
+import it.sevenbits.formatter.io.core_io.IWriter;
+import it.sevenbits.formatter.io.core_io.ReaderException;
+import it.sevenbits.formatter.io.core_io.WriterException;
 
 /**
  * Formatter implementation.

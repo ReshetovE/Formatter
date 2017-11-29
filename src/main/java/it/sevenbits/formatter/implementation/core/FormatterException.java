@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.core;
+package it.sevenbits.formatter.implementation.core;
 
 /**
  * Exception for FormatterClass.

@@ -1,4 +1,7 @@
-package it.sevenbits.formatter.core;
+package it.sevenbits.formatter.implementation.core;
+
+import it.sevenbits.formatter.io.core_io.IWriter;
+import it.sevenbits.formatter.lexer.ILexer;
 
 /**
  * Formatter interface.

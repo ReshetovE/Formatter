@@ -1,6 +1,6 @@
 package it.sevenbits.formatter.implementation;
 
-import it.sevenbits.formatter.core.IToken;
+import it.sevenbits.formatter.implementation.core.IToken;
 
 /**
  * Token implementation.

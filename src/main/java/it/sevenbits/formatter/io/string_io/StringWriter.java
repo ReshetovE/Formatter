@@ -1,6 +1,6 @@
-package it.sevenbits.formatter.string_io;
+package it.sevenbits.formatter.io.string_io;
 
-import it.sevenbits.formatter.core.IWriter;
+import it.sevenbits.formatter.io.core_io.IWriter;
 
 /**
  * StringWriter implementation.

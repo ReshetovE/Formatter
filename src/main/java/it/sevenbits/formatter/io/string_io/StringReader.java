@@ -1,7 +1,7 @@
-package it.sevenbits.formatter.string_io;
+package it.sevenbits.formatter.io.string_io;
 
-import it.sevenbits.formatter.core.IReader;
-import it.sevenbits.formatter.core.ReaderException;
+import it.sevenbits.formatter.io.core_io.IReader;
+import it.sevenbits.formatter.io.core_io.ReaderException;
 
 /**
  * StringReader implementation.

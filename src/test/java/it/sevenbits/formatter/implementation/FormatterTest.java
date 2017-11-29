@@ -1,10 +1,5 @@
 package it.sevenbits.formatter.implementation;
 
-import it.sevenbits.formatter.core.*;
-import it.sevenbits.formatter.string_io.StringReader;
-import it.sevenbits.formatter.string_io.StringWriter;
-import org.junit.Test;
-
 import static junit.framework.TestCase.assertEquals;
 
 public class FormatterTest {/*

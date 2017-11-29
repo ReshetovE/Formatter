@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.core;
+package it.sevenbits.formatter.implementation.core;
 
 /**
  * Token interface.

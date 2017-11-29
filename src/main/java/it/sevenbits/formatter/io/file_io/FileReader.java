@@ -1,9 +1,9 @@
-package it.sevenbits.formatter.file_io;
+package it.sevenbits.formatter.io.file_io;
 
-import it.sevenbits.formatter.core.CloseException;
-import it.sevenbits.formatter.core.IClosable;
-import it.sevenbits.formatter.core.IReader;
-import it.sevenbits.formatter.core.ReaderException;
+import it.sevenbits.formatter.io.core_io.CloseException;
+import it.sevenbits.formatter.io.core_io.IClosable;
+import it.sevenbits.formatter.io.core_io.IReader;
+import it.sevenbits.formatter.io.core_io.ReaderException;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

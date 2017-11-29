@@ -1,9 +1,9 @@
-package it.sevenbits.formatter.implementation;
+package it.sevenbits.formatter.lexer;
 
-import it.sevenbits.formatter.core.ILexer;
-import it.sevenbits.formatter.core.IReader;
-import it.sevenbits.formatter.core.IToken;
-import it.sevenbits.formatter.core.ReaderException;
+import it.sevenbits.formatter.io.core_io.IReader;
+import it.sevenbits.formatter.implementation.core.IToken;
+import it.sevenbits.formatter.io.core_io.ReaderException;
+import it.sevenbits.formatter.implementation.Token;
 
 /**
  * Lexical analyzer.
