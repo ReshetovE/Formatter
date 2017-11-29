@@ -1,7 +1,5 @@
 package it.sevenbits.formatter.io.core_io;
 
-import it.sevenbits.formatter.io.core_io.CloseException;
-
 /**
  * Closable interface
  */

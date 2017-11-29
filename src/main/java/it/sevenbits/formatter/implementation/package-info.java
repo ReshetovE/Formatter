@@ -1,4 +1,4 @@
 /**
- * Formatter it.sevenbits.formatter.implementation.
+ * Formatter package.
  */
 package it.sevenbits.formatter.implementation;
