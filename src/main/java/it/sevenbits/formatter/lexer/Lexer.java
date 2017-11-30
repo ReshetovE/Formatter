@@ -16,7 +16,6 @@ public class Lexer implements ILexer {
 
     /**
      * Constructor Lexer.
-     *
      * @param in Reader.
      */
     public Lexer(final IReader in) {
@@ -29,6 +28,8 @@ public class Lexer implements ILexer {
             while (in.hasChars()) {
                 char c = in.nextChar();
                 switch (c) {
+                    case ' ':
+                        return new Token("Space", " ");
                     case '{':
                         return new Token("OpenBracket", "{");
                     case '}':
