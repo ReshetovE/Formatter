@@ -30,19 +30,19 @@ public class Lexer implements ILexer {
                 char c = in.nextChar();
                 switch (c) {
                     case '{':
-                        return new Token("OpenBrace", "{");
+                        return new Token("OpenBracket", "{");
                     case '}':
-                        return new Token("CloseBrace", "}");
+                        return new Token("CloseBracket", "}");
                     case ';':
                         return new Token("Brackets", ";");
                     default:
-                        return new Token("default", String.valueOf(c));
+                        return new Token("Default", String.valueOf(c));
                 }
             }
         } catch (ReaderException e) {
             throw new ReaderException("Method format failed", e);
         }
-        return new Token("default", "default");
+        return new Token("Default", "Default");
     }
 
     @Override

@@ -15,7 +15,7 @@ public class StateTransitions {
      * @param token Token.
      * @return New state.
      */
-    public IState nextState(IState state, IToken token){
+    public IState nextState(final IState state, final IToken token) {
         HashMap<Pair, IState> newStateMap = new HashMap<Pair, IState>();
 
 

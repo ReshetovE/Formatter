@@ -7,7 +7,11 @@ public class State implements IState {
 
     private String name;
 
-    State(final String name) {
+    /**
+     * State constructor.
+     * @param name Name state.
+     */
+    public State(final String name) {
         this.name = name;
     }
 
@@ -17,9 +21,13 @@ public class State implements IState {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         State state = (State) o;
 
