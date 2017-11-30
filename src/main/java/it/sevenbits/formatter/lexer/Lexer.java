@@ -34,7 +34,7 @@ public class Lexer implements ILexer {
                     case '}':
                         return new Token("CloseBracket", "}");
                     case ';':
-                        return new Token("Brackets", ";");
+                        return new Token("Semicolon", ";");
                     default:
                         return new Token("Default", String.valueOf(c));
                 }
