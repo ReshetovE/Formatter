@@ -1,7 +1,9 @@
 package it.sevenbits.formatter.implementation.statemachine;
 
 import it.sevenbits.formatter.implementation.core.IToken;
+import it.sevenbits.formatter.implementation.statemachine.command.CloseBracketCommand;
 import it.sevenbits.formatter.implementation.statemachine.command.DefaultCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.OpenBracketCommand;
 
 import java.util.HashMap;
 
@@ -22,8 +24,8 @@ public class CommandRepository {
         map = new HashMap<>();
 
         map.put(pairDefault, new DefaultCommand());
-        map.put(pairOpenBracket, new DefaultCommand());
-        map.put(pairCloseBracket, new DefaultCommand());
+        map.put(pairOpenBracket, new OpenBracketCommand());
+        map.put(pairCloseBracket, new CloseBracketCommand());
     }
 
     /**

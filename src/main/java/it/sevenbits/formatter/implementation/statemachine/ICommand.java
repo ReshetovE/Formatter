@@ -13,6 +13,7 @@ public interface ICommand {
      * Command method.
      * @param token Token interface.
      * @param writer Input interface FileWriter.
+     * @throws WriterException Failed or interrupted I/O operations.
      */
     void execute(IToken token, IWriter writer) throws WriterException;
 }
