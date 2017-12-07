@@ -12,8 +12,6 @@ import it.sevenbits.formatter.implementation.statemachine.StateTransitions;
 import it.sevenbits.formatter.lexer.ILexer;
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.core_io.IWriter;
-import it.sevenbits.formatter.io.core_io.ReaderException;
-import it.sevenbits.formatter.io.core_io.WriterException;
 
 /**
  * Formatter implementation.
@@ -30,11 +28,12 @@ public class Formatter implements IFormatter {
 
          IState state = new State("DefaultState");
          IContext context = new Context();
+         CommandRepository commands = new CommandRepository();
 
          try {
              while (lexer.hasMoreTokens()) {
                  IToken token = lexer.readToken();
-                 CommandRepository commands = new CommandRepository();
+                 
                  StateTransitions transitions = new StateTransitions();
 
                  ICommand command;
@@ -43,9 +42,7 @@ public class Formatter implements IFormatter {
 
                  transitions.nextState(state, token);
              }
-         } catch (ReaderException e) {
-             throw new FormatterException("Method format failed", e);
-         } catch (WriterException e) {
+         } catch (Exception e) {
              throw new FormatterException("Method format failed", e);
          }
     }

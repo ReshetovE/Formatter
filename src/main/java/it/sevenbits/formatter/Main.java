@@ -20,13 +20,13 @@ public class Main {
      */
 
     public static void main(final String[] args) throws Exception {
-        try (FileReader in = new FileReader(args[0]);
-            FileWriter out = new FileWriter(args[1])) {
+        try (
+            FileReader in = new FileReader(args[0]);
+            FileWriter out = new FileWriter(args[1])
+        ) {
             ILexer lexer = new Lexer(in);
             IFormatter format = new Formatter();
             format.format(lexer, out);
-        } catch (Exception e) {
-            throw new Exception(e);
         }
     }
 }

@@ -31,7 +31,7 @@ public class FileWriter implements IWriter, IClosable {
             FileSystem fileSystem = FileSystems.getDefault();
             Path path = fileSystem.getPath(pathFile);
             writer = new OutputStreamWriter(Files.newOutputStream(path), StandardCharsets.UTF_8);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new WriterException("Error IO", e);
         }
     }
@@ -44,7 +44,7 @@ public class FileWriter implements IWriter, IClosable {
     public void write(final String s) throws WriterException {
         try {
             writer.write(s);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new WriterException("Error IO", e);
         }
     }
@@ -56,7 +56,7 @@ public class FileWriter implements IWriter, IClosable {
     public void close() throws CloseException {
         try {
             writer.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new CloseException("Error", e);
         }
     }

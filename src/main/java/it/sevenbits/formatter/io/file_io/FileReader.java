@@ -33,7 +33,7 @@ public class FileReader implements IReader, IClosable {
             Path path = fileSystem.getPath(pathFile);
             reader = new InputStreamReader(Files.newInputStream(path), StandardCharsets.UTF_8);
             readChar = reader.read();
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new ReaderException("File not found", e);
         }
     }

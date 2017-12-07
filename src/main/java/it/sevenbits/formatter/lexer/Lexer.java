@@ -23,7 +23,7 @@ public class Lexer implements ILexer {
     }
 
     @Override
-    public IToken readToken() throws ReaderException {
+    public IToken readToken() throws LexerException {
         try {
             while (in.hasChars()) {
                 char c = in.nextChar();
@@ -40,8 +40,8 @@ public class Lexer implements ILexer {
                         return new Token("Default", String.valueOf(c));
                 }
             }
-        } catch (ReaderException e) {
-            throw new ReaderException("Method format failed", e);
+        } catch (Exception e) {
+            throw new LexerException("Method format failed", e);
         }
         return new Token("Default", "Default");
     }
