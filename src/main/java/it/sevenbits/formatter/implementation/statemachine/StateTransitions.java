@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * State transitions implements.
  */
-public class StateTransitions {
+public class StateTransitions implements IStateTransitions {
 
     private HashMap<Pair, IState> map;
 
@@ -21,6 +21,7 @@ public class StateTransitions {
         Pair<State, String> pairDefaultCloseBracket = new Pair<>(new State("DefaultState"), "CloseBracket");
         Pair<State, String> pairDefaultSemicolon = new Pair<>(new State("DefaultState"), "Semicolon");
         Pair<State, String> pairDefaultSpace = new Pair<>(new State("DefaultState"), "Space");
+        Pair<State, String> pairDefaultNewLine = new Pair<>(new State("DefaultState"), "NewLine");
         //NewLine state.
         Pair<State, String> pairNewLineSimpleChar = new Pair<>(new State("NewLineState"), "Default");
         Pair<State, String> pairNewLineOpenBracket = new Pair<>(new State("NewLineState"), "OpenBracket");
@@ -36,6 +37,7 @@ public class StateTransitions {
         map.put(pairDefaultCloseBracket, new State("NewLineState"));
         map.put(pairDefaultSemicolon, new State("NewLineState"));
         map.put(pairDefaultSpace, new State("DefaultState"));
+        map.put(pairDefaultNewLine, new State("NewLineState"));
 
         map.put(pairNewLineSimpleChar, new State("DefaultState"));
         map.put(pairNewLineOpenBracket, new State("DefaultState"));
@@ -45,13 +47,7 @@ public class StateTransitions {
     }
 
 
-
-    /**
-     * Get new state.
-     * @param state Old state.
-     * @param token Token.
-     * @return New state.
-     */
+    @Override
     public IState nextState(final IState state, final IToken token) {
         Pair currentPair = new Pair<>(state, token.getName());
         return map.get(currentPair);

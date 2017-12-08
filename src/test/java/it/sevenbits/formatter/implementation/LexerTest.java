@@ -33,27 +33,27 @@ public class LexerTest {
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
-        assertEquals("char", token.getName());
+        assertEquals("Char", token.getName());
         assertEquals("a", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
-        assertEquals("semicolon", token.getName());
+        assertEquals("Semicolon", token.getName());
         assertEquals(";", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
-        assertEquals("newline", token.getName());
+        assertEquals("NewLine", token.getName());
         assertEquals("\n", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
-        assertEquals("space", token.getName());
+        assertEquals("Space", token.getName());
         assertEquals("   ", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
-        assertEquals("char", token.getName());
+        assertEquals("Char", token.getName());
         assertEquals("b", token.getLexeme());
 
         assertFalse(lexer.hasMoreTokens());
@@ -81,5 +81,79 @@ public class LexerTest {
         verify(commands).getCommand(new State("default"), 'a');
         verify(command).execute(eq('a'), any(IContextLexer.class));
         verify(transitions).getNextState(new State("default"), 'a');
+    }
+
+    @Test
+    public void testOpenBracket() throws LexerException {
+        IReader reader = new StringReader("a{p");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("a", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("OpenBracket", token.getName());
+        assertEquals("{", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("p", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
+    }
+
+    @Test
+    public void testCloseBracket() throws LexerException {
+        IReader reader = new StringReader("a}p");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("a", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("CloseBracket", token.getName());
+        assertEquals("}", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("p", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
+    }
+
+    @Test
+    public void testSpace() throws LexerException {
+        IReader reader = new StringReader("a;   b");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("a", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Semicolon", token.getName());
+        assertEquals(";", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Space", token.getName());
+        assertEquals("   ", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("b", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
     }
 }

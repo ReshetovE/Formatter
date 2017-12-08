@@ -13,11 +13,16 @@ public class StateTransitionsLexer implements IStateTransitionsLexer {
 
     private final Map<Pair<State, Character>, State> states = new HashMap<>();
 
+    /**
+     * Constructor state transitions.
+     */
     public StateTransitionsLexer() {
         states.put(new Pair<>(new State("default"), ' '),
                 new State("spacing"));
         states.put(new Pair<>(new State("spacing"), ' '),
                 new State("spacing"));
+        states.put(new Pair<>(new State("spacing"), null),
+                new State("default"));
     }
 
     @Override

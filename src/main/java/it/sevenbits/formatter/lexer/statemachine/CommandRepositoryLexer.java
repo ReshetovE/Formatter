@@ -17,21 +17,40 @@ public class CommandRepositoryLexer implements ICommandRepositoryLexer {
      * Constructor Command repository.
      */
     public CommandRepositoryLexer() {
+
+        //Default state.
+
         commands.put(new Pair<>(new State("default"), null),
                 (c, context) -> {
-            context.appendLexeme(c); context.setTokenName("char"); });
+                    context.appendLexeme(c); context.setTokenName("Char"); });
+
         commands.put(new Pair<>(new State("default"), ';'),
                 (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("semicolon"); });
+                    context.appendLexeme(c); context.setTokenName("Semicolon"); });
+
         commands.put(new Pair<>(new State("default"), '\n'),
                 (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("newline"); });
+                    context.appendLexeme(c); context.setTokenName("NewLine"); });
+
         commands.put(new Pair<>(new State("default"), ' '),
                 (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("space"); });
+                    context.appendLexeme(c); context.setTokenName("Space"); });
+
+        commands.put(new Pair<>(new State("default"), '{'),
+                (c, context) -> {
+                    context.appendLexeme(c); context.setTokenName("OpenBracket"); });
+
+        commands.put(new Pair<>(new State("default"), '}'),
+                (c, context) -> {
+                    context.appendLexeme(c); context.setTokenName("CloseBracket"); });
+
+
+        //spacing state
+
         commands.put(new Pair<>(new State("spacing"), ' '),
                 (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("space"); });
+                    context.appendLexeme(c); context.setTokenName("Space"); });
+
         commands.put(new Pair<>(new State("spacing"), null),
                 (c, context) -> {
                     context.appendPostpone(c); });
