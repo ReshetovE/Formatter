@@ -5,8 +5,9 @@ import it.sevenbits.formatter.io.core_io.ReaderException;
 import it.sevenbits.formatter.io.string_io.StringReader;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 
 public class StringReaderTest {
 

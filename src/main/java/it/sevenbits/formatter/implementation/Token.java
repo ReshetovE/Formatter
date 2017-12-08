@@ -7,8 +7,8 @@ import it.sevenbits.formatter.implementation.core.IToken;
  */
 public class Token implements IToken {
 
-    private String name = "";
-    private String lexeme = "";
+    private String name;
+    private String lexeme;
 
     /**
      * Constructor Token.

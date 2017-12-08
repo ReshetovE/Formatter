@@ -15,6 +15,7 @@ public class testState {
 
         assertNotSame(state1, state2);
         assertEquals(state1, state2);
+        assertEquals(state1.getName(), state2.getName());
         assertEquals(state1.hashCode(), state2.hashCode());
     }
 
@@ -25,6 +26,7 @@ public class testState {
 
         assertNotSame(state1, state2);
         assertNotEquals(state1, state2);
+        assertNotEquals(state1.getName(), state2.getName());
         assertNotEquals(state1.hashCode(), state2.hashCode());
     }
 }

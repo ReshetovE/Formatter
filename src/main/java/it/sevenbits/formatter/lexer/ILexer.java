@@ -1,7 +1,6 @@
 package it.sevenbits.formatter.lexer;
 
 import it.sevenbits.formatter.implementation.core.IToken;
-import it.sevenbits.formatter.io.core_io.ReaderException;
 
 /**
  * Lexer interface.
@@ -15,9 +14,9 @@ public interface ILexer {
     IToken readToken() throws LexerException;
 
     /**
-     * Checker lexem.
+     * Checker lexeme.
      * @return Are there next lexeme?
-     * @throws ReaderException Failed or interrupted I/O operations.
+     * @throws LexerException Failed or interrupted I/O operations.
      */
-    boolean hasMoreTokens() throws ReaderException;
+    boolean hasMoreTokens() throws LexerException;
 }

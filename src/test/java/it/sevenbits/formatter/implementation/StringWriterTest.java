@@ -5,7 +5,7 @@ import it.sevenbits.formatter.io.core_io.WriterException;
 import it.sevenbits.formatter.io.string_io.StringWriter;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class StringWriterTest {
 

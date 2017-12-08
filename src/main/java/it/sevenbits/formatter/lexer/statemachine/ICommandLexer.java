@@ -1,16 +1,14 @@
 package it.sevenbits.formatter.lexer.statemachine;
 
-import it.sevenbits.formatter.implementation.core.IToken;
-
 /**
  * Interface lexer command.
  */
-public interface ILexerCommand {
+public interface ICommandLexer {
 
     /**
      * Create token.
      * @param c lexeme.
-     * @return Done token.
+     * @param context Context.
      */
-    IToken execute(char c);
+    void execute(char c, IContextLexer context);
 }

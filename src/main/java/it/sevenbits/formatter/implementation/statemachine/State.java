@@ -3,7 +3,7 @@ package it.sevenbits.formatter.implementation.statemachine;
 /**
  * Default state implements.
  */
-public class State implements IState {
+public final class State implements IState {
 
     private String name;
 
@@ -37,5 +37,12 @@ public class State implements IState {
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "State{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
