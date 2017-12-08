@@ -7,21 +7,18 @@ import it.sevenbits.formatter.io.core_io.IWriter;
  */
 public class StringWriter implements IWriter {
 
-    private StringBuilder builder = new StringBuilder();
+    private StringBuilder content = new StringBuilder();
 
     /**
      * Write to string.
      * @param s String to write.
      */
     public void write(final String s) {
-        builder.append(s);
+        content.append(s);
     }
 
-    /**
-     * Return contained string.
-     * @return string
-     */
-    public String getString() {
-        return builder.toString();
+    @Override
+    public String toString() {
+        return content.toString();
     }
 }

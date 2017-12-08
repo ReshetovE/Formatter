@@ -1,7 +1,6 @@
 package it.sevenbits.formatter.lexer.statemachine;
 
 import it.sevenbits.formatter.implementation.statemachine.Pair;
-import it.sevenbits.formatter.implementation.statemachine.State;
 
 import java.util.HashMap;
 

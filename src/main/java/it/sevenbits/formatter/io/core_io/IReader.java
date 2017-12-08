@@ -10,12 +10,12 @@ public interface IReader {
      * @return Are there next char?
      * @throws ReaderException Failed or interrupted I/O operations.
      */
-    boolean hasChars() throws ReaderException;
+    boolean hasNextChars() throws ReaderException;
 
     /**
      * ReadChar method.
      * @return New symbol.
      * @throws ReaderException Failed or interrupted I/O operations.
      */
-    char nextChar() throws ReaderException;
+    char readChar() throws ReaderException;
 }

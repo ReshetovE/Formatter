@@ -33,7 +33,7 @@ public class Formatter implements IFormatter {
          try {
              while (lexer.hasMoreTokens()) {
                  IToken token = lexer.readToken();
-                 
+
                  StateTransitions transitions = new StateTransitions();
 
                  ICommand command;

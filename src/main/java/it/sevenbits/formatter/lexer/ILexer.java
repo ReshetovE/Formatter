@@ -10,9 +10,9 @@ public interface ILexer {
     /**
      * Read token.
      * @return Token.
-     * @throws ReaderException Failed or interrupted I/O operations.
+     * @throws LexerException Failed or interrupted I/O operations.
      */
-    IToken readToken() throws ReaderException, LexerException;
+    IToken readToken() throws LexerException;
 
     /**
      * Checker lexem.

@@ -8,15 +8,15 @@ import it.sevenbits.formatter.io.core_io.ReaderException;
  */
 public class StringReader implements IReader {
 
-    private String str = null;
+    private String content = null;
     private int index = 0;
 
     /**
      * Constructor StringReader.
-     * @param s Input string.
+     * @param content Input string.
      */
-    public StringReader(final String s) {
-        this.str = s;
+    public StringReader(final String content) {
+        this.content = content;
     }
 
     /**
@@ -24,8 +24,8 @@ public class StringReader implements IReader {
      * @return Checker last character.
      * @throws ReaderException  Failed or interrupted I/O operations.
      */
-    public boolean hasChars() throws ReaderException {
-        return index < str.length();
+    public boolean hasNextChars() throws ReaderException {
+        return index < content.length();
     }
 
     /**
@@ -33,7 +33,7 @@ public class StringReader implements IReader {
      * @return Read character.
      * @throws ReaderException Failed or interrupted I/O operations.
      */
-    public char nextChar() throws ReaderException {
-        return str.charAt(index++);
+    public char readChar() throws ReaderException {
+        return content.charAt(index++);
     }
 }

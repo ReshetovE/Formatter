@@ -43,7 +43,7 @@ public class FileReader implements IReader, IClosable {
      * @return Checker last character.
      * @throws ReaderException  Failed or interrupted I/O operations.
      */
-    public boolean hasChars() throws ReaderException {
+    public boolean hasNextChars() throws ReaderException {
             return readChar > -1;
     }
 
@@ -52,7 +52,7 @@ public class FileReader implements IReader, IClosable {
      * @return Read character.
      * @throws ReaderException Failed or interrupted I/O operations.
      */
-    public char nextChar() throws ReaderException {
+    public char readChar() throws ReaderException {
         int prevChar = readChar;
         try {
             readChar = reader.read();

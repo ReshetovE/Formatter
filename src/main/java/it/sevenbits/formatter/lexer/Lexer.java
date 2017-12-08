@@ -11,22 +11,22 @@ import it.sevenbits.formatter.implementation.Token;
 public class Lexer implements ILexer {
 
     private StringBuilder lexeme = new StringBuilder();
-    private IReader in;
+    private IReader reader;
 
 
     /**
      * Constructor Lexer.
-     * @param in Reader.
+     * @param reader Reader.
      */
-    public Lexer(final IReader in) {
-        this.in = in;
+    public Lexer(final IReader reader) {
+        this.reader = reader;
     }
 
     @Override
     public IToken readToken() throws LexerException {
         try {
-            while (in.hasChars()) {
-                char c = in.nextChar();
+            while (reader.hasNextChars()) {
+                char c = reader.readChar();
                 switch (c) {
                     case ' ':
                         return new Token("Space", " ");
@@ -48,6 +48,6 @@ public class Lexer implements ILexer {
 
     @Override
     public boolean hasMoreTokens() throws ReaderException {
-        return in.hasChars();
+        return reader.hasNextChars();
     }
 }
