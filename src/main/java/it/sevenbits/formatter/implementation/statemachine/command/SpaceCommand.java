@@ -13,5 +13,7 @@ public class SpaceCommand implements ICommand {
     @Override
     public void execute(final IToken token, final IWriter writer, final IContext context) throws WriterException {
 
+
+
     }
 }

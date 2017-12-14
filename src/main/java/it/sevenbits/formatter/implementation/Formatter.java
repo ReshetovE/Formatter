@@ -29,18 +29,15 @@ public class Formatter implements IFormatter {
          IState state = new State("DefaultState");
          IContext context = new Context();
          CommandRepository commands = new CommandRepository();
-
+         StateTransitions transitions = new StateTransitions();
          try {
              while (lexer.hasMoreTokens()) {
                  IToken token = lexer.readToken();
 
-                 StateTransitions transitions = new StateTransitions();
-
-                 ICommand command;
-                 command = commands.getCommand(state, token);
+                 ICommand command = commands.getCommand(state, token);
                  command.execute(token, out, context);
 
-                 transitions.nextState(state, token);
+                 state = transitions.nextState(state, token);
              }
          } catch (Exception e) {
              throw new FormatterException("Method format failed", e);

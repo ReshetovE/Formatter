@@ -11,7 +11,6 @@ import it.sevenbits.formatter.lexer.Lexer;
 import it.sevenbits.formatter.lexer.LexerException;
 import it.sevenbits.formatter.lexer.statemachine.ICommandLexer;
 import it.sevenbits.formatter.lexer.statemachine.ICommandRepositoryLexer;
-import it.sevenbits.formatter.lexer.statemachine.IContextLexer;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -79,7 +78,7 @@ public class LexerTest {
 //        verify(reader, times(2)).hasNextChars();
 //        verify(reader).readChar();
         verify(commands).getCommand(new State("default"), 'a');
-        verify(command).execute(eq('a'), any(IContextLexer.class));
+        verify(command).execute(eq('a'), any(Lexer.class));
         verify(transitions).getNextState(new State("default"), 'a');
     }
 
@@ -156,4 +155,43 @@ public class LexerTest {
 
         assertFalse(lexer.hasMoreTokens());
     }
+
+    @Test
+    public void testSpace2() throws LexerException {
+        IReader reader = new StringReader("a{ pub");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("a", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("OpenBracket", token.getName());
+        assertEquals("{", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Space", token.getName());
+        assertEquals(" ", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("p", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("u", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("b", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
+    }
+
 }

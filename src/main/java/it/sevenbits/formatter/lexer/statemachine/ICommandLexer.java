@@ -10,5 +10,5 @@ public interface ICommandLexer {
      * @param c lexeme.
      * @param context Context.
      */
-    void execute(char c, IContextLexer context);
+    void execute(char c, LexerIContext context);
 }

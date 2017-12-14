@@ -16,14 +16,14 @@ public class StateTransitions implements IStateTransitions {
      */
     public StateTransitions() {
         //Default state.
-        Pair<State, String> pairDefaultSimpleChar = new Pair<>(new State("DefaultState"), "Default");
+        Pair<State, String> pairDefaultSimpleChar = new Pair<>(new State("DefaultState"), "Char");
         Pair<State, String> pairDefaultOpenBracket = new Pair<>(new State("DefaultState"), "OpenBracket");
         Pair<State, String> pairDefaultCloseBracket = new Pair<>(new State("DefaultState"), "CloseBracket");
         Pair<State, String> pairDefaultSemicolon = new Pair<>(new State("DefaultState"), "Semicolon");
         Pair<State, String> pairDefaultSpace = new Pair<>(new State("DefaultState"), "Space");
         Pair<State, String> pairDefaultNewLine = new Pair<>(new State("DefaultState"), "NewLine");
         //NewLine state.
-        Pair<State, String> pairNewLineSimpleChar = new Pair<>(new State("NewLineState"), "Default");
+        Pair<State, String> pairNewLineSimpleChar = new Pair<>(new State("NewLineState"), "Char");
         Pair<State, String> pairNewLineOpenBracket = new Pair<>(new State("NewLineState"), "OpenBracket");
         Pair<State, String> pairNewLineCloseBracket = new Pair<>(new State("NewLineState"), "CloseBracket");
         Pair<State, String> pairNewLineSemicolon = new Pair<>(new State("NewLineState"), "Semicolon");

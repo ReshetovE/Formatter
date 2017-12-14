@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.implementation;
+package it.sevenbits.formatter.implementation.statemachine;
 
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.implementation.statemachine.CommandRepository;
@@ -27,6 +27,6 @@ public class CommandRepositoryTest {
 
         command = commandRepository.getCommand(new State("NewLineState"), token);
 
-        assertSame(command, new SpaceCommand());
+        assertEquals(command, new SpaceCommand());
     }
 }

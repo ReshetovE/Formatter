@@ -3,7 +3,7 @@ package it.sevenbits.formatter.lexer.statemachine;
 /**
  * Interface for Context class.
  */
-public interface IContextLexer {
+public interface LexerIContext {
 
     /**
      * Char append token.

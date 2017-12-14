@@ -25,6 +25,31 @@ public class FormatterTest {
         IFormatter formatter = new Formatter();
         formatter.format(lexer, writer);
         assertEquals("a;\nb", writer.toString());
+    }
 
+    @Test
+    public void testSemicolon() throws FormatterException {
+        IReader reader = new StringReader(
+                "sdfsdf;dfsd"
+        );
+        IWriter writer = new StringWriter();
+        ILexer lexer = new Lexer(reader);
+
+        IFormatter formatter = new Formatter();
+        formatter.format(lexer, writer);
+        assertEquals("sdfsdf;\ndfsd", writer.toString());
+    }
+
+    @Test
+    public void testOpenBrackets() throws FormatterException {
+        IReader reader = new StringReader(
+                "abc{ public;}"
+        );
+        IWriter writer = new StringWriter();
+        ILexer lexer = new Lexer(reader);
+
+        IFormatter formatter = new Formatter();
+        formatter.format(lexer, writer);
+        assertEquals("abc{\n    public;\n}", writer.toString());
     }
 }

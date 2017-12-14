@@ -3,7 +3,7 @@ package it.sevenbits.formatter.lexer.statemachine;
 /**
  * Context implements.
  */
-public class ContextLexer implements IContextLexer {
+public class LexerContext implements LexerIContext {
     @Override
     public void appendLexeme(final char c) {
 

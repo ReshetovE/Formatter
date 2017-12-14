@@ -6,22 +6,21 @@ import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.string_io.StringReader;
 import it.sevenbits.formatter.lexer.statemachine.CommandRepositoryLexer;
-import it.sevenbits.formatter.lexer.statemachine.ContextLexer;
+import it.sevenbits.formatter.lexer.statemachine.LexerContext;
 import it.sevenbits.formatter.lexer.statemachine.ICommandLexer;
 import it.sevenbits.formatter.lexer.statemachine.ICommandRepositoryLexer;
-import it.sevenbits.formatter.lexer.statemachine.IContextLexer;
 
 /**
  * Lexical analyzer.
  */
-public class Lexer implements ILexer, IContextLexer {
+public class Lexer implements ILexer, it.sevenbits.formatter.lexer.statemachine.LexerIContext {
 
     private final IReader reader;
     private StringBuilder tokenLexeme;
     private String tokenName;
     private ICommandRepositoryLexer commands;
     private IStateTransitionsLexer transitions;
-    private IContextLexer context;
+    private it.sevenbits.formatter.lexer.statemachine.LexerIContext context;
     private StringBuilder postponeBuffer = new StringBuilder();
 
 
@@ -48,7 +47,7 @@ public class Lexer implements ILexer, IContextLexer {
     @Override
     public IToken readToken() throws LexerException {
         tokenLexeme = new StringBuilder();
-        context = new ContextLexer();
+        context = new LexerContext();
         State state = new State("default");
         IReader postponeReader = new StringReader(postponeBuffer.toString());
         try {
@@ -73,33 +72,11 @@ public class Lexer implements ILexer, IContextLexer {
             return new Token(tokenName, tokenLexeme.toString());
 
         } catch (Exception e) {
-            throw new LexerException("Method format failed", e);
+            throw new LexerException("Method readToken failed", e);
         }
-
-
-//        try {
-//            while (reader.hasNextChars()) {
-//                char c = reader.readChar();
-//                switch (c) {
-//                    case ' ':
-//                        return new Token("Space", String.valueOf(c));
-//                    case '{':
-//                        return new Token("OpenBracket", String.valueOf(c));
-//                    case '}':
-//                        return new Token("CloseBracket", String.valueOf(c));
-//                    case ';':
-//                        return new Token("Semicolon", String.valueOf(c));
-//                    case '\n':
-//                        return new Token("NewLine", String.valueOf(c));
-//                    default:
-//                        return new Token("Char", String.valueOf(c));
-//                }
-//            }
-//        } catch (Exception e) {
-//            throw new LexerException("Method format failed", e);
-//        }
-//        return new Token("Char", "Char");
     }
+
+
 
     @Override
     public boolean hasMoreTokens() throws LexerException {
