@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.lexer.statemachine;
+package it.sevenbits.formatter.lexer.statemachine.core;
 
 /**
  * Interface lexer command.

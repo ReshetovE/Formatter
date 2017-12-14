@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.lexer;
+package it.sevenbits.formatter.lexer.statemachine.core;
 
 import it.sevenbits.formatter.implementation.statemachine.State; /**
  * Interface for StateTransitions class.

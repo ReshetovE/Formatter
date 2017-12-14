@@ -6,11 +6,11 @@ import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.io.core_io.ReaderException;
 import it.sevenbits.formatter.io.string_io.StringReader;
 import it.sevenbits.formatter.lexer.ILexer;
-import it.sevenbits.formatter.lexer.IStateTransitionsLexer;
+import it.sevenbits.formatter.lexer.statemachine.core.IStateTransitionsLexer;
 import it.sevenbits.formatter.lexer.Lexer;
 import it.sevenbits.formatter.lexer.LexerException;
-import it.sevenbits.formatter.lexer.statemachine.ICommandLexer;
-import it.sevenbits.formatter.lexer.statemachine.ICommandRepositoryLexer;
+import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
+import it.sevenbits.formatter.lexer.statemachine.core.ICommandRepositoryLexer;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

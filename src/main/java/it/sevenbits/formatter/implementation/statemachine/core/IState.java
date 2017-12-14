@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.implementation.statemachine;
+package it.sevenbits.formatter.implementation.statemachine.core;
 
 /**
  * State interface.

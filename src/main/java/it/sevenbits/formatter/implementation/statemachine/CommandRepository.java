@@ -8,6 +8,9 @@ import it.sevenbits.formatter.implementation.statemachine.command.NewLineCommand
 import it.sevenbits.formatter.implementation.statemachine.command.OpenBracketCommand;
 import it.sevenbits.formatter.implementation.statemachine.command.SemicolonCommand;
 import it.sevenbits.formatter.implementation.statemachine.command.SpaceCommand;
+import it.sevenbits.formatter.implementation.statemachine.core.ICommand;
+import it.sevenbits.formatter.implementation.statemachine.core.ICommandRepository;
+import it.sevenbits.formatter.implementation.statemachine.core.IState;
 
 import java.util.HashMap;
 

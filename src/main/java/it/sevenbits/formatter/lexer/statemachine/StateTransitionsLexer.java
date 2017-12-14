@@ -1,7 +1,8 @@
-package it.sevenbits.formatter.lexer;
+package it.sevenbits.formatter.lexer.statemachine;
 
 import it.sevenbits.formatter.implementation.statemachine.Pair;
 import it.sevenbits.formatter.implementation.statemachine.State;
+import it.sevenbits.formatter.lexer.statemachine.core.IStateTransitionsLexer;
 
 import java.util.HashMap;
 import java.util.Map;

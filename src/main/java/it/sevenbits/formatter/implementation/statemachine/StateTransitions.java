@@ -1,6 +1,8 @@
 package it.sevenbits.formatter.implementation.statemachine;
 
 import it.sevenbits.formatter.implementation.core.IToken;
+import it.sevenbits.formatter.implementation.statemachine.core.IState;
+import it.sevenbits.formatter.implementation.statemachine.core.IStateTransitions;
 
 import java.util.HashMap;
 

@@ -2,6 +2,7 @@ package it.sevenbits.formatter.implementation.statemachine;
 
 import it.sevenbits.formatter.implementation.Token;
 import it.sevenbits.formatter.implementation.core.IToken;
+import it.sevenbits.formatter.implementation.statemachine.core.IState;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

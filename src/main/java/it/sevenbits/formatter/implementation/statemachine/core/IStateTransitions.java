@@ -1,6 +1,7 @@
-package it.sevenbits.formatter.implementation.statemachine;
+package it.sevenbits.formatter.implementation.statemachine.core;
 
 import it.sevenbits.formatter.implementation.core.IToken;
+import it.sevenbits.formatter.implementation.statemachine.core.IState;
 
 /**
  * State transitions interface.

@@ -7,20 +7,23 @@ import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.string_io.StringReader;
 import it.sevenbits.formatter.lexer.statemachine.CommandRepositoryLexer;
 import it.sevenbits.formatter.lexer.statemachine.LexerContext;
-import it.sevenbits.formatter.lexer.statemachine.ICommandLexer;
-import it.sevenbits.formatter.lexer.statemachine.ICommandRepositoryLexer;
+import it.sevenbits.formatter.lexer.statemachine.StateTransitionsLexer;
+import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
+import it.sevenbits.formatter.lexer.statemachine.core.ICommandRepositoryLexer;
+import it.sevenbits.formatter.lexer.statemachine.core.IStateTransitionsLexer;
+import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
 
 /**
  * Lexical analyzer.
  */
-public class Lexer implements ILexer, it.sevenbits.formatter.lexer.statemachine.LexerIContext {
+public class Lexer implements ILexer, LexerIContext {
 
     private final IReader reader;
     private StringBuilder tokenLexeme;
     private String tokenName;
     private ICommandRepositoryLexer commands;
     private IStateTransitionsLexer transitions;
-    private it.sevenbits.formatter.lexer.statemachine.LexerIContext context;
+    private LexerIContext context;
     private StringBuilder postponeBuffer = new StringBuilder();
 
 

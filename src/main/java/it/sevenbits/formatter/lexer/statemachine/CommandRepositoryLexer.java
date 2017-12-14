@@ -2,6 +2,8 @@ package it.sevenbits.formatter.lexer.statemachine;
 
 import it.sevenbits.formatter.implementation.statemachine.Pair;
 import it.sevenbits.formatter.implementation.statemachine.State;
+import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
+import it.sevenbits.formatter.lexer.statemachine.core.ICommandRepositoryLexer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,10 +29,6 @@ public class CommandRepositoryLexer implements ICommandRepositoryLexer {
         commands.put(new Pair<>(new State("default"), ';'),
                 (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("Semicolon"); });
-
-        commands.put(new Pair<>(new State("default"), '\n'),
-                (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("NewLine"); });
 
         commands.put(new Pair<>(new State("default"), ' '),
                 (c, context) -> {

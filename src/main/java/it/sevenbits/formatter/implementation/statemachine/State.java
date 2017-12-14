@@ -1,5 +1,7 @@
 package it.sevenbits.formatter.implementation.statemachine;
 
+import it.sevenbits.formatter.implementation.statemachine.core.IState;
+
 /**
  * Default state implements.
  */

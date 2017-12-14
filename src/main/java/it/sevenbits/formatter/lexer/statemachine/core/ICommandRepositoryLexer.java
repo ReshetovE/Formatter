@@ -1,6 +1,7 @@
-package it.sevenbits.formatter.lexer.statemachine;
+package it.sevenbits.formatter.lexer.statemachine.core;
 
 import it.sevenbits.formatter.implementation.statemachine.State;
+import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
 
 /**
  * Interface for CommandRepository class.

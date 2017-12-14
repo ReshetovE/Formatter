@@ -1,5 +1,7 @@
 package it.sevenbits.formatter.lexer.statemachine;
 
+import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
+
 /**
  * Context implements.
  */

@@ -1,13 +1,9 @@
 package it.sevenbits.formatter.implementation.statemachine;
 
 import it.sevenbits.formatter.implementation.core.IToken;
-import it.sevenbits.formatter.implementation.statemachine.CommandRepository;
-import it.sevenbits.formatter.implementation.statemachine.ICommand;
-import it.sevenbits.formatter.implementation.statemachine.ICommandRepository;
-import it.sevenbits.formatter.implementation.statemachine.IState;
-import it.sevenbits.formatter.implementation.statemachine.State;
-import it.sevenbits.formatter.implementation.statemachine.command.NewLineCommand;
+import it.sevenbits.formatter.implementation.statemachine.core.ICommand;
 import it.sevenbits.formatter.implementation.statemachine.command.SpaceCommand;
+import it.sevenbits.formatter.implementation.statemachine.core.ICommandRepository;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
