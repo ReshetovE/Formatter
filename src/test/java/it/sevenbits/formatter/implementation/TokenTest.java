@@ -11,10 +11,10 @@ public class TokenTest {
 
     @Test
     public void testSimpleToken() {
-        IToken token = new Token("Char", "a");
+        IToken token = new Token("Char", "it/sevenbits/formatter/implementation/a");
 
         assertEquals("Char", token.getName());
-        assertEquals("a", token.getLexeme());
+        assertEquals("it/sevenbits/formatter/implementation/a", token.getLexeme());
     }
 
     @Test

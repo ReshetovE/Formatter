@@ -23,4 +23,44 @@ public interface LexerIContext {
      * @param c Char.
      */
     void appendPostpone(char c);
+
+    /**
+     * Getter token name.
+     * @return String name.
+     */
+    String getTokenName();
+
+    /**
+     * Getter lexeme.
+     * @return String builder lexeme.
+     */
+    StringBuilder getTokenLexeme();
+
+    /**
+     * Getter postpone lexeme.
+     * @return String builder lexeme.
+     */
+    StringBuilder getPostponeBuffer();
+
+    /**
+     * Clear string builder.
+     */
+    void createNewLexeme();
+
+    /**
+     * Clear postpone string builder.
+     */
+    void createNewPostpone();
+
+    /**
+     * Getter postpone token name.
+     * @return String name.
+     */
+    String getPostponeTokenName();
+
+    /**
+     * Assing to name token.
+     * @param name Future name token.
+     */
+    void setPostponeTokenName(String name);
 }

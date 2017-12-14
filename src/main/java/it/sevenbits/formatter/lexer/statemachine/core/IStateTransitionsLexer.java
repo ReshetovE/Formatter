@@ -7,7 +7,7 @@ public interface IStateTransitionsLexer {
     /**
      * Get new state.
      * @param state Old state.
-     * @param c Char.
+     * @param s Name lexeme.
      * @return New state.
      */
     State getNextState(State state, char c);

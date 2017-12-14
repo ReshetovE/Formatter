@@ -21,11 +21,11 @@ public class DefaultCommandTest {
         IWriter writer = new StringWriter();
         IToken token = mock(IToken.class);
         IContext context = new Context();
-        when(token.getLexeme()).thenReturn("a");
+        when(token.getLexeme()).thenReturn("it/sevenbits/formatter/implementation/a");
         ICommand command = new DefaultCommand();
         command.execute(token, writer, context);
 
-        assertEquals("a", writer.toString());
+        assertEquals("it/sevenbits/formatter/implementation/a", writer.toString());
     }
 
     @Test

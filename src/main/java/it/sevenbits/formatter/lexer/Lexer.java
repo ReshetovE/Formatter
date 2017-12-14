@@ -16,16 +16,12 @@ import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
 /**
  * Lexical analyzer.
  */
-public class Lexer implements ILexer, LexerIContext {
+public class Lexer implements ILexer {
 
     private final IReader reader;
-    private StringBuilder tokenLexeme;
-    private String tokenName;
     private ICommandRepositoryLexer commands;
     private IStateTransitionsLexer transitions;
-    private LexerIContext context;
-    private StringBuilder postponeBuffer = new StringBuilder();
-
+    private LexerIContext context = new LexerContext();
 
     /**
      * Constructor Lexer.
@@ -49,30 +45,31 @@ public class Lexer implements ILexer, LexerIContext {
 
     @Override
     public IToken readToken() throws LexerException {
-        tokenLexeme = new StringBuilder();
+        context.createNewLexeme();
         context = new LexerContext();
         State state = new State("default");
-        IReader postponeReader = new StringReader(postponeBuffer.toString());
+        State finalState = new State("finalstate");
+        IReader postponeReader = new StringReader(context.getPostponeBuffer().toString());
         try {
 
             while (postponeReader.hasNextChars() && state != null) {
                 char c = postponeReader.readChar();
                 ICommandLexer command = commands.getCommand(state, c);
-                command.execute(c, this);
+                command.execute(c, context);
                 state = transitions.getNextState(state, c);
 
             }
-            postponeBuffer = new StringBuilder();
+            context.createNewPostpone();
 
-            while (reader.hasNextChars() && state != null) {
+            while (reader.hasNextChars() && !state.equals(finalState)) {
                 char c = reader.readChar();
                 ICommandLexer command = commands.getCommand(state, c);
-                command.execute(c, this);
+                command.execute(c, context);
                 state = transitions.getNextState(state, c);
 
             }
 
-            return new Token(tokenName, tokenLexeme.toString());
+            return new Token(context.getTokenName(), context.getTokenLexeme().toString());
 
         } catch (Exception e) {
             throw new LexerException("Method readToken failed", e);
@@ -84,24 +81,9 @@ public class Lexer implements ILexer, LexerIContext {
     @Override
     public boolean hasMoreTokens() throws LexerException {
         try {
-            return postponeBuffer.length() > 0 || reader.hasNextChars();
+            return context.getPostponeBuffer().toString().length() > 0 || reader.hasNextChars();
         } catch (Exception e) {
             throw new LexerException("Failed or interrupted I/O operations", e);
         }
-    }
-
-    @Override
-    public void appendLexeme(final char c) {
-        tokenLexeme.append(c);
-    }
-
-    @Override
-    public void setTokenName(final String name) {
-        tokenName = name;
-    }
-
-    @Override
-    public void appendPostpone(final char c) {
-        postponeBuffer.append(c);
     }
 }

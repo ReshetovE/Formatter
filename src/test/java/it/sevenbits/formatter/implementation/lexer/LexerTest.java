@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.implementation;
+package it.sevenbits.formatter.implementation.lexer;
 
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.implementation.statemachine.State;
@@ -11,6 +11,7 @@ import it.sevenbits.formatter.lexer.Lexer;
 import it.sevenbits.formatter.lexer.LexerException;
 import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
 import it.sevenbits.formatter.lexer.statemachine.core.ICommandRepositoryLexer;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -59,28 +60,28 @@ public class LexerTest {
 
     }
 
-    @Test
-    public void testStateMachineLoop() throws LexerException, ReaderException {
-        IReader reader = new StringReader("a"); //mock(IReader.class);
-//        when(reader.hasNextChars()).thenReturn(true, false);
-//        when(reader.readChar()).thenReturn('a');
-
-        ICommandLexer command = mock(ICommandLexer.class);
-        ICommandRepositoryLexer commands = mock(ICommandRepositoryLexer.class);
-        when(commands.getCommand(any(State.class), anyChar())).thenReturn(command);
-
-        IStateTransitionsLexer transitions = mock(IStateTransitionsLexer.class);
-
-
-        ILexer lexer = new Lexer(reader, commands, transitions);
-        lexer.readToken();
-
-//        verify(reader, times(2)).hasNextChars();
-//        verify(reader).readChar();
-        verify(commands).getCommand(new State("default"), 'a');
-        verify(command).execute(eq('a'), any(Lexer.class));
-        verify(transitions).getNextState(new State("default"), 'a');
-    }
+//    @Test
+//    public void testStateMachineLoop() throws LexerException, ReaderException {
+//        IReader reader = new StringReader("it/sevenbits/formatter/implementation/a"); //mock(IReader.class);
+////        when(reader.hasNextChars()).thenReturn(true, false);
+////        when(reader.readChar()).thenReturn('a');
+//
+//        ICommandLexer command = mock(ICommandLexer.class);
+//        ICommandRepositoryLexer commands = mock(ICommandRepositoryLexer.class);
+//        when(commands.getCommand(any(State.class), anyChar())).thenReturn(command);
+//
+//        IStateTransitionsLexer transitions = mock(IStateTransitionsLexer.class);
+//
+//
+//        ILexer lexer = new Lexer(reader, commands, transitions);
+//        lexer.readToken();
+//
+////        verify(reader, times(2)).hasNextChars();
+////        verify(reader).readChar();
+//        verify(commands).getCommand(new State("default"), 'a');
+//        verify(command).execute(eq('a'), any(Lexer.class));
+//        verify(transitions).getNextState(new State("default"), 'a');
+//    }
 
     @Test
     public void testOpenBracket() throws LexerException {
@@ -113,7 +114,7 @@ public class LexerTest {
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
         assertEquals("Char", token.getName());
-        assertEquals("a", token.getLexeme());
+        assertEquals("it/sevenbits/formatter/implementation/a", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
@@ -130,23 +131,18 @@ public class LexerTest {
 
     @Test
     public void testSpace() throws LexerException {
-        IReader reader = new StringReader("a;   b");
+        IReader reader = new StringReader("; b");
         ILexer lexer = new Lexer(reader);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
-        assertEquals("Char", token.getName());
-        assertEquals("a", token.getLexeme());
-
-        assertTrue(lexer.hasMoreTokens());
-        token = lexer.readToken();
         assertEquals("Semicolon", token.getName());
         assertEquals(";", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
         assertEquals("Space", token.getName());
-        assertEquals("   ", token.getLexeme());
+        assertEquals(" ", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
@@ -158,7 +154,7 @@ public class LexerTest {
 
     @Test
     public void testSpace2() throws LexerException {
-        IReader reader = new StringReader("a{ pub");
+        IReader reader = new StringReader("a{  pu");
         ILexer lexer = new Lexer(reader);
 
         assertTrue(lexer.hasMoreTokens());
@@ -174,7 +170,7 @@ public class LexerTest {
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
         assertEquals("Space", token.getName());
-        assertEquals(" ", token.getLexeme());
+        assertEquals("  ", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
@@ -185,11 +181,6 @@ public class LexerTest {
         token = lexer.readToken();
         assertEquals("Char", token.getName());
         assertEquals("u", token.getLexeme());
-
-        assertTrue(lexer.hasMoreTokens());
-        token = lexer.readToken();
-        assertEquals("Char", token.getName());
-        assertEquals("b", token.getLexeme());
 
         assertFalse(lexer.hasMoreTokens());
     }

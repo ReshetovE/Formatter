@@ -2,6 +2,12 @@ package it.sevenbits.formatter.lexer.statemachine;
 
 import it.sevenbits.formatter.implementation.statemachine.Pair;
 import it.sevenbits.formatter.implementation.statemachine.State;
+import it.sevenbits.formatter.lexer.statemachine.command.CloseBracketCommand;
+import it.sevenbits.formatter.lexer.statemachine.command.IntactCommand;
+import it.sevenbits.formatter.lexer.statemachine.command.NewLineCommand;
+import it.sevenbits.formatter.lexer.statemachine.command.OpenBracketCommand;
+import it.sevenbits.formatter.lexer.statemachine.command.SemicolonCommand;
+import it.sevenbits.formatter.lexer.statemachine.command.SpaceCommand;
 import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
 import it.sevenbits.formatter.lexer.statemachine.core.ICommandRepositoryLexer;
 
@@ -22,26 +28,17 @@ public class CommandRepositoryLexer implements ICommandRepositoryLexer {
 
         //Default state.
 
-        commands.put(new Pair<>(new State("default"), null),
-                (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("Char"); });
+        commands.put(new Pair<>(new State("default"), null), new IntactCommand());
 
-        commands.put(new Pair<>(new State("default"), ';'),
-                (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("Semicolon"); });
+        commands.put(new Pair<>(new State("default"), ';'), new SemicolonCommand());
 
-        commands.put(new Pair<>(new State("default"), ' '),
-                (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("Space"); });
+        commands.put(new Pair<>(new State("default"), '{'), new OpenBracketCommand());
 
-        commands.put(new Pair<>(new State("default"), '{'),
-                (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("OpenBracket"); });
+        commands.put(new Pair<>(new State("default"), '}'), new CloseBracketCommand());
 
-        commands.put(new Pair<>(new State("default"), '}'),
-                (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("CloseBracket"); });
+        commands.put(new Pair<>(new State("default"), ' '), new SpaceCommand());
 
+        commands.put(new Pair<>(new State("default"), '\n'), new NewLineCommand());
 
         //spacing state
 
@@ -51,7 +48,7 @@ public class CommandRepositoryLexer implements ICommandRepositoryLexer {
 
         commands.put(new Pair<>(new State("spacing"), null),
                 (c, context) -> {
-                    context.appendPostpone(c); });
+                    context.appendPostpone(c); context.setPostponeTokenName("Char");});
     }
 
     @Override
