@@ -2,11 +2,15 @@ package it.sevenbits.formatter.lexer.statemachine;
 
 import it.sevenbits.formatter.implementation.statemachine.Pair;
 import it.sevenbits.formatter.implementation.statemachine.State;
+import it.sevenbits.formatter.lexer.statemachine.command.AppendPostponeCommand;
+import it.sevenbits.formatter.lexer.statemachine.command.CloseMultiLineCommentCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.CloseBracketCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.IntactCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.NewLineCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.OpenBracketCommand;
+import it.sevenbits.formatter.lexer.statemachine.command.OpenMultiLineCommentCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.SemicolonCommand;
+import it.sevenbits.formatter.lexer.statemachine.command.SingleLineCommentCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.SpaceCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.StringLiteralCommand;
 import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
@@ -28,42 +32,34 @@ public class CommandRepositoryLexer implements ICommandRepositoryLexer {
     public CommandRepositoryLexer() {
 
         //Default state.
-
         commands.put(new Pair<>(new State("Default"), null), new IntactCommand());
-
         commands.put(new Pair<>(new State("Default"), ';'), new SemicolonCommand());
-
         commands.put(new Pair<>(new State("Default"), '{'), new OpenBracketCommand());
-
         commands.put(new Pair<>(new State("Default"), '}'), new CloseBracketCommand());
-
         commands.put(new Pair<>(new State("Default"), ' '), new SpaceCommand());
-
         commands.put(new Pair<>(new State("Default"), '\n'), new NewLineCommand());
-
         commands.put(new Pair<>(new State("Default"), '"'), new StringLiteralCommand());
-
-        //spacing state
         commands.put(new Pair<>(new State("Default"), '/'), new IntactCommand());
-
-
-        commands.put(new Pair<>(new State("Slash"), null), (c, context) ->
-                context.appendPostpone(c));
-        commands.put(new Pair<>(new State("Slash"), '/'), (c, context) -> {
-            context.appendLexeme(c); context.setTokenName("SingleLineComment"); });
-        commands.put(new Pair<>(new State("SingleLineComment"), null), (c, context) ->
-                context.appendPostpone(c));
-        commands.put(new Pair<>(new State("Slash"), '*'), (c, context) -> {
-            context.appendLexeme(c); context.setTokenName("OpenMultiLineComment"); });
-        commands.put(new Pair<>(new State("OpenMultiLineComment"), null), (c, context) ->
-                context.appendPostpone(c));
         commands.put(new Pair<>(new State("Default"), '*'), new IntactCommand());
-        commands.put(new Pair<>(new State("Star"), null), (c, context) ->
-                context.appendPostpone(c));
-        commands.put(new Pair<>(new State("Star"), '/'), (c, context) -> {
-            context.appendLexeme(c); context.setTokenName("CloseMultiLineComment"); });
-        commands.put(new Pair<>(new State("CloseMultiLineComment"), null), (c, context) ->
-                context.appendPostpone(c));
+
+        //Slash state
+
+        commands.put(new Pair<>(new State("Slash"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("Slash"), '/'), new SingleLineCommentCommand());
+        commands.put(new Pair<>(new State("Slash"), '*'), new OpenMultiLineCommentCommand());
+
+        //SingleLineComment state
+        commands.put(new Pair<>(new State("SingleLineComment"), null), new AppendPostponeCommand());
+
+        //OpenMultiLineComment state
+        commands.put(new Pair<>(new State("OpenMultiLineComment"), null), new AppendPostponeCommand());
+
+        //Star state
+        commands.put(new Pair<>(new State("Star"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("Star"), '/'), new CloseMultiLineCommentCommand());
+
+        //CloseMultiComment state
+        commands.put(new Pair<>(new State("CloseMultiLineComment"), null), new AppendPostponeCommand());
 
     }
 

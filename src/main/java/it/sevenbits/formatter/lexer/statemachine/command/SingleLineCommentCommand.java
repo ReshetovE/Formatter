@@ -4,13 +4,13 @@ import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
 import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
 
 /**
- * Slash command implements.
+ * Single line comment command implements.
  */
-public class SlashCommand implements ICommandLexer {
+public class SingleLineCommentCommand implements ICommandLexer {
 
     @Override
     public void execute(final char c, final LexerIContext context) {
         context.appendLexeme(c);
-        context.setTokenName("Char");
+        context.setTokenName("SingleLineComment");
     }
 }

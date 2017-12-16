@@ -221,4 +221,22 @@ public class LexerTest {
         assertFalse(lexer.hasMoreTokens());
     }
 
+    @Test
+    public void testStar1() throws LexerException {
+        IReader reader = new StringReader("//*/");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("SingleLineComment", token.getName());
+        assertEquals("//", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("CloseMultiLineComment", token.getName());
+        assertEquals("*/", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
+    }
+
 }
