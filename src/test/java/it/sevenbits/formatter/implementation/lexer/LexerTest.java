@@ -26,8 +26,8 @@ public class LexerTest {
     @Test
     public void testSimpleTokenize() throws LexerException {
         IReader reader = new StringReader(
-                "a;\n" +
-                        "   b"
+                "a;" +
+                        "  "
         );
         ILexer lexer = new Lexer(reader);
 
@@ -43,18 +43,13 @@ public class LexerTest {
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
-        assertEquals("NewLine", token.getName());
-        assertEquals("\n", token.getLexeme());
+        assertEquals("Space", token.getName());
+        assertEquals(" ", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
         assertEquals("Space", token.getName());
-        assertEquals("   ", token.getLexeme());
-
-        assertTrue(lexer.hasMoreTokens());
-        token = lexer.readToken();
-        assertEquals("Char", token.getName());
-        assertEquals("b", token.getLexeme());
+        assertEquals(" ", token.getLexeme());
 
         assertFalse(lexer.hasMoreTokens());
 
@@ -114,7 +109,7 @@ public class LexerTest {
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
         assertEquals("Char", token.getName());
-        assertEquals("it/sevenbits/formatter/implementation/a", token.getLexeme());
+        assertEquals("a", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
@@ -154,7 +149,7 @@ public class LexerTest {
 
     @Test
     public void testSpace2() throws LexerException {
-        IReader reader = new StringReader("a{  pu");
+        IReader reader = new StringReader("a{ pu");
         ILexer lexer = new Lexer(reader);
 
         assertTrue(lexer.hasMoreTokens());
@@ -170,7 +165,7 @@ public class LexerTest {
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();
         assertEquals("Space", token.getName());
-        assertEquals("  ", token.getLexeme());
+        assertEquals(" ", token.getLexeme());
 
         assertTrue(lexer.hasMoreTokens());
         token = lexer.readToken();

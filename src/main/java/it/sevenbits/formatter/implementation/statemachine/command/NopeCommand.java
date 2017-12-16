@@ -7,12 +7,11 @@ import it.sevenbits.formatter.io.core_io.IWriter;
 import it.sevenbits.formatter.io.core_io.WriterException;
 
 /**
- * Default command implements.
+ * Space command implements.
  */
-public class DefaultCommand implements ICommand {
-
+public class NopeCommand implements ICommand {
     @Override
     public void execute(final IToken token, final IWriter writer, final IContext context) throws WriterException {
-        context.writeLexeme(token, writer);
+
     }
 }

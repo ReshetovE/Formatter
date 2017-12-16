@@ -2,7 +2,7 @@ package it.sevenbits.formatter.implementation.statemachine;
 
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.implementation.statemachine.core.ICommand;
-import it.sevenbits.formatter.implementation.statemachine.command.SpaceCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.NopeCommand;
 import it.sevenbits.formatter.implementation.statemachine.core.ICommandRepository;
 import org.junit.Test;
 
@@ -23,6 +23,6 @@ public class CommandRepositoryTest {
 
         command = commandRepository.getCommand(new State("NewLineState"), token);
 
-        assertEquals(command, new SpaceCommand());
+        assertEquals(command, new NopeCommand());
     }
 }

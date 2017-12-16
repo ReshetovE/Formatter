@@ -18,25 +18,7 @@ public class StateTransitionsLexer implements IStateTransitionsLexer {
      * Constructor state transitions.
      */
     public StateTransitionsLexer() {
-        states.put(new Pair<>(new State("default"), null), new State("finalstate"));
-        states.put(new Pair<>(new State("default"), ';'), new State("finalstate"));
-        states.put(new Pair<>(new State("default"), '{'), new State("finalstate"));
-        states.put(new Pair<>(new State("default"), '}'), new State("finalstate"));
-        states.put(new Pair<>(new State("default"), ' '), new State("spacing"));
-        states.put(new Pair<>(new State("default"), '\n'), new State("finalstate"));
 
-
-        states.put(new Pair<>(new State("spacing"), null), new State("finalstate"));
-
-        states.put(new Pair<>(new State("spacing"), ';'), new State("finalstate"));
-
-        states.put(new Pair<>(new State("spacing"), '{'), new State("finalstate"));
-
-        states.put(new Pair<>(new State("spacing"), '}'), new State("finalstate"));
-
-        states.put(new Pair<>(new State("spacing"), ' '), new State("spacing"));
-
-        states.put(new Pair<>(new State("spacing"), '\n'), new State("finalstate"));
 
     }
 

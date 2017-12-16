@@ -4,7 +4,7 @@ import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.implementation.statemachine.Context;
 import it.sevenbits.formatter.implementation.statemachine.core.ICommand;
 import it.sevenbits.formatter.implementation.statemachine.core.IContext;
-import it.sevenbits.formatter.implementation.statemachine.command.DefaultCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.defaultState.DefaultCommand;
 import it.sevenbits.formatter.io.core_io.IWriter;
 import it.sevenbits.formatter.io.core_io.WriterException;
 import it.sevenbits.formatter.io.string_io.StringWriter;

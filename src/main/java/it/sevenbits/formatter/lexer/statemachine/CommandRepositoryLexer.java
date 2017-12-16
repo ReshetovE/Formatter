@@ -8,6 +8,7 @@ import it.sevenbits.formatter.lexer.statemachine.command.NewLineCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.OpenBracketCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.SemicolonCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.SpaceCommand;
+import it.sevenbits.formatter.lexer.statemachine.command.StringLiteralCommand;
 import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
 import it.sevenbits.formatter.lexer.statemachine.core.ICommandRepositoryLexer;
 
@@ -40,15 +41,10 @@ public class CommandRepositoryLexer implements ICommandRepositoryLexer {
 
         commands.put(new Pair<>(new State("default"), '\n'), new NewLineCommand());
 
+        commands.put(new Pair<>(new State("default"), '"'), new StringLiteralCommand());
+
         //spacing state
 
-        commands.put(new Pair<>(new State("spacing"), ' '),
-                (c, context) -> {
-                    context.appendLexeme(c); context.setTokenName("Space"); });
-
-        commands.put(new Pair<>(new State("spacing"), null),
-                (c, context) -> {
-                    context.appendPostpone(c); context.setPostponeTokenName("Char");});
     }
 
     @Override

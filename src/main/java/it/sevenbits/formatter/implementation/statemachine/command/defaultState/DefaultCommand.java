@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.implementation.statemachine.command;
+package it.sevenbits.formatter.implementation.statemachine.command.defaultState;
 
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.implementation.statemachine.core.ICommand;
@@ -7,13 +7,12 @@ import it.sevenbits.formatter.io.core_io.IWriter;
 import it.sevenbits.formatter.io.core_io.WriterException;
 
 /**
- * Char new line command implements.
+ * Default command implements.
  */
-public class CharNewLineCommand implements ICommand {
+public class DefaultCommand implements ICommand {
 
     @Override
     public void execute(final IToken token, final IWriter writer, final IContext context) throws WriterException {
-        context.writeIndent(writer);
         context.writeLexeme(token, writer);
     }
 }
