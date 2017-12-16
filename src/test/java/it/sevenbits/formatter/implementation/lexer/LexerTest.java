@@ -57,7 +57,7 @@ public class LexerTest {
 
 //    @Test
 //    public void testStateMachineLoop() throws LexerException, ReaderException {
-//        IReader reader = new StringReader("it/sevenbits/formatter/implementation/a"); //mock(IReader.class);
+//        IReader reader = new StringReader("a"); //mock(IReader.class);
 ////        when(reader.hasNextChars()).thenReturn(true, false);
 ////        when(reader.readChar()).thenReturn('a');
 //
@@ -176,6 +176,47 @@ public class LexerTest {
         token = lexer.readToken();
         assertEquals("Char", token.getName());
         assertEquals("u", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
+    }
+
+    @Test
+    public void testSingleLineComment() throws LexerException {
+        IReader reader = new StringReader("//abc");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("SingleLineComment", token.getName());
+        assertEquals("//", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("a", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("b", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("c", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
+    }
+
+    @Test
+    public void testStar() throws LexerException {
+        IReader reader = new StringReader("*/");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("CloseMultiLineComment", token.getName());
+        assertEquals("*/", token.getLexeme());
 
         assertFalse(lexer.hasMoreTokens());
     }

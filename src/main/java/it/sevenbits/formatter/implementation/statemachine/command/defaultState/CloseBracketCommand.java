@@ -13,6 +13,7 @@ public class CloseBracketCommand implements ICommand {
 
     @Override
     public void execute(final IToken token, final IWriter writer, final IContext context) throws WriterException {
+        context.writeNewLine(writer);
         context.decrementIndent();
         context.writeIndent(writer);
         context.writeLexeme(token, writer);

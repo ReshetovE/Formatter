@@ -23,6 +23,7 @@ public class Lexer implements ILexer {
     private IStateTransitionsLexer transitions;
     private LexerIContext context = new LexerContext();
 
+
     /**
      * Constructor Lexer.
      * @param reader Reader.
@@ -46,12 +47,11 @@ public class Lexer implements ILexer {
     @Override
     public IToken readToken() throws LexerException {
         context.createNewLexeme();
-        context = new LexerContext();
-        State state = new State("default");
-        State finalState = new State("finalstate");
-        IReader postponeReader = new StringReader(context.getPostponeBuffer().toString());
-        try {
 
+        State state = new State("Default");
+
+        try {
+            IReader postponeReader = new StringReader(context.getPostponeBuffer().toString());
             while (postponeReader.hasNextChars() && state != null) {
                 char c = postponeReader.readChar();
                 ICommandLexer command = commands.getCommand(state, c);
@@ -81,7 +81,7 @@ public class Lexer implements ILexer {
     @Override
     public boolean hasMoreTokens() throws LexerException {
         try {
-            return context.getPostponeBuffer().toString().length() > 0 || reader.hasNextChars();
+            return context.getPostponeBuffer().length() > 0 || reader.hasNextChars();
         } catch (Exception e) {
             throw new LexerException("Failed or interrupted I/O operations", e);
         }

@@ -145,4 +145,49 @@ public class FormatterTest {
         formatter.format(lexer, writer);
         assertEquals("\"{};\n sdf  sdv\"", writer.toString());
     }
+
+    @Test
+    public void testDoubleToken() throws FormatterException {
+        IReader reader = new StringReader(
+                "//ab{}\n" +
+                        "{" +
+                        "//c;c"
+        );
+        IWriter writer = new StringWriter();
+        ILexer lexer = new Lexer(reader);
+
+        IFormatter formatter = new Formatter();
+        formatter.format(lexer, writer);
+        assertEquals("//ab{}\n" +
+                                "{\n" +
+                                "    //c;c", writer.toString());
+    }
+
+    @Test
+    public void testOpenMultiLineComment() throws FormatterException {
+        IReader reader = new StringReader(
+                "/* {};\n" +
+                        "sdf"
+        );
+        IWriter writer = new StringWriter();
+        ILexer lexer = new Lexer(reader);
+
+        IFormatter formatter = new Formatter();
+        formatter.format(lexer, writer);
+        assertEquals("/* {};\n" +
+                              "sdf", writer.toString());
+    }
+
+    @Test
+    public void testMultiLineComment() throws FormatterException {
+        IReader reader = new StringReader(
+                "/*{}*5*/"
+        );
+        IWriter writer = new StringWriter();
+        ILexer lexer = new Lexer(reader);
+
+        IFormatter formatter = new Formatter();
+        formatter.format(lexer, writer);
+        assertEquals("/*{}*5*/", writer.toString());
+    }
 }

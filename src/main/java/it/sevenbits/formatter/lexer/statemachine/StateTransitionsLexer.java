@@ -18,7 +18,11 @@ public class StateTransitionsLexer implements IStateTransitionsLexer {
      * Constructor state transitions.
      */
     public StateTransitionsLexer() {
-
+        states.put(new Pair<>(new State("Default"), '/'), new State("Slash"));
+        states.put(new Pair<>(new State("Slash"), '/'), new State("SingleLineComment"));
+        states.put(new Pair<>(new State("Slash"), '*'), new State("OpenMultiLineComment"));
+        states.put(new Pair<>(new State("Default"), '*'), new State("Star"));
+        states.put(new Pair<>(new State("Star"), '/'), new State("CloseMultiLineComment"));
 
     }
 
