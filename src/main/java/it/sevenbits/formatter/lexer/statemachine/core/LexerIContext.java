@@ -52,15 +52,4 @@ public interface LexerIContext {
      */
     void createNewPostpone();
 
-    /**
-     * Getter postpone token name.
-     * @return String name.
-     */
-    String getPostponeTokenName();
-
-    /**
-     * Assing to name token.
-     * @param name Future name token.
-     */
-    void setPostponeTokenName(String name);
 }

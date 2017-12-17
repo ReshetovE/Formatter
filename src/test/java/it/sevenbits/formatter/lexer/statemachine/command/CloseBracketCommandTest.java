@@ -1,41 +1,41 @@
-package it.sevenbits.formatter.implementation.lexer.statemachine.command;
+package it.sevenbits.formatter.lexer.statemachine.command;
 
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.io.string_io.StringReader;
-import it.sevenbits.formatter.lexer.ILexer;
+import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.Lexer;
-import it.sevenbits.formatter.lexer.LexerException;
+import it.sevenbits.formatter.lexer.core.LexerException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 
-public class NewLineCommandTest {
+public class CloseBracketCommandTest {
 
     @Test
     public void testSimpleSemicolonCommand() throws LexerException {
-        IReader reader = new StringReader("\n");
+        IReader reader = new StringReader("}");
         ILexer lexer = new Lexer(reader);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
-        assertEquals("NewLine", token.getName());
-        assertEquals("\n", token.getLexeme());
+        assertEquals("CloseBracket", token.getName());
+        assertEquals("}", token.getLexeme());
 
         assertFalse(lexer.hasMoreTokens());
     }
 
     @Test
     public void testNotEqualsSemicolonCommand() throws LexerException {
-        IReader reader = new StringReader("\n");
+        IReader reader = new StringReader("}");
         ILexer lexer = new Lexer(reader);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
-        assertNotEquals("CloseBracket", token.getName());
-        assertNotEquals("}", token.getLexeme());
+        assertNotEquals("OpenBracket", token.getName());
+        assertNotEquals("{", token.getLexeme());
 
         assertFalse(lexer.hasMoreTokens());
     }

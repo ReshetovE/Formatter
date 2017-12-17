@@ -2,7 +2,7 @@ package it.sevenbits.formatter.lexer.statemachine;
 
 import it.sevenbits.formatter.implementation.statemachine.Pair;
 import it.sevenbits.formatter.implementation.statemachine.State;
-import it.sevenbits.formatter.lexer.statemachine.core.IStateTransitionsLexer;
+import it.sevenbits.formatter.lexer.statemachine.core.LexerIStateTransitions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,14 +10,22 @@ import java.util.Map;
 /**
  * State transitions implementation.
  */
-public class StateTransitionsLexer implements IStateTransitionsLexer {
+public class LexerStateTransitions implements LexerIStateTransitions {
 
     private final Map<Pair<State, Character>, State> states = new HashMap<>();
 
     /**
      * Constructor state transitions.
      */
-    public StateTransitionsLexer() {
+    public LexerStateTransitions() {
+
+        states.put(new Pair<>(new State("Default"), '\\'), new State("BackSlash"));
+        states.put(new Pair<>(new State("BackSlash"), '"'), new State("IgnoreStringLiteral"));
+
+        states.put(new Pair<>(new State("Default"), 'f'), new State("FFromLoop"));
+        states.put(new Pair<>(new State("FFromLoop"), 'o'), new State("FoFromLoop"));
+        states.put(new Pair<>(new State("FoFromLoop"), 'r'), new State("FullLoop"));
+
         states.put(new Pair<>(new State("Default"), '/'), new State("Slash"));
         states.put(new Pair<>(new State("Slash"), '/'), new State("SingleLineComment"));
         states.put(new Pair<>(new State("Slash"), '*'), new State("OpenMultiLineComment"));

@@ -14,6 +14,5 @@ public class SemicolonCommand implements ICommand {
     @Override
     public void execute(final IToken token, final IWriter writer, final IContext context) throws WriterException {
         context.writeLexeme(token, writer);
-//        context.writeIndent(writer);
     }
 }

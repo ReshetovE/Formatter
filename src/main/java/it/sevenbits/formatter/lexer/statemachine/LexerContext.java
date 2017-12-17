@@ -7,7 +7,6 @@ import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
  */
 public class LexerContext implements LexerIContext {
 
-    private String postponeTokenName;
     private String tokenName;
     private StringBuilder tokenLexeme;
     private StringBuilder postponeBuffer;
@@ -18,7 +17,6 @@ public class LexerContext implements LexerIContext {
     public LexerContext() {
         tokenName = "";
         tokenLexeme = new StringBuilder();
-        postponeTokenName = "";
         postponeBuffer = new StringBuilder();
     }
 
@@ -62,13 +60,4 @@ public class LexerContext implements LexerIContext {
         postponeBuffer = new StringBuilder();
     }
 
-    @Override
-    public String getPostponeTokenName() {
-        return postponeTokenName;
-    }
-
-    @Override
-    public void setPostponeTokenName(final String name) {
-        postponeTokenName = name;
-    }
 }

@@ -9,7 +9,7 @@ import it.sevenbits.formatter.implementation.statemachine.core.IContext;
 import it.sevenbits.formatter.implementation.statemachine.core.IState;
 import it.sevenbits.formatter.implementation.statemachine.State;
 import it.sevenbits.formatter.implementation.statemachine.StateTransitions;
-import it.sevenbits.formatter.lexer.ILexer;
+import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.core_io.IWriter;
 

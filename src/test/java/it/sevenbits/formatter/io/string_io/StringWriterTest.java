@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.implementation;
+package it.sevenbits.formatter.io.string_io;
 
 import it.sevenbits.formatter.io.core_io.IWriter;
 import it.sevenbits.formatter.io.core_io.WriterException;

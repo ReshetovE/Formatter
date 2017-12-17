@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.lexer;
+package it.sevenbits.formatter.lexer.core;
 
 import it.sevenbits.formatter.implementation.core.IToken;
 

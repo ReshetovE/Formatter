@@ -1,12 +1,11 @@
 package it.sevenbits.formatter.lexer.statemachine.core;
 
 import it.sevenbits.formatter.implementation.statemachine.State;
-import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
 
 /**
  * Interface for CommandRepository class.
  */
-public interface ICommandRepositoryLexer {
+public interface LexerICommandRepository {
 
     /**
      * Get new command.
@@ -14,5 +13,5 @@ public interface ICommandRepositoryLexer {
      * @param c Char.
      * @return New command.
      */
-    ICommandLexer getCommand(State state, char c);
+    LexerICommand getCommand(State state, char c);
 }

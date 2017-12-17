@@ -3,7 +3,7 @@ package it.sevenbits.formatter.lexer.statemachine.core;
 /**
  * Interface lexer command.
  */
-public interface ICommandLexer {
+public interface LexerICommand {
 
     /**
      * Create token.

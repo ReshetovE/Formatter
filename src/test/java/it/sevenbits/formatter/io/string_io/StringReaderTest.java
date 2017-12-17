@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.implementation;
+package it.sevenbits.formatter.io.string_io;
 
 import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.io.core_io.ReaderException;

@@ -5,12 +5,14 @@ import it.sevenbits.formatter.implementation.statemachine.State;
 import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.string_io.StringReader;
-import it.sevenbits.formatter.lexer.statemachine.CommandRepositoryLexer;
+import it.sevenbits.formatter.lexer.core.ILexer;
+import it.sevenbits.formatter.lexer.core.LexerException;
+import it.sevenbits.formatter.lexer.statemachine.LexerCommandRepository;
 import it.sevenbits.formatter.lexer.statemachine.LexerContext;
-import it.sevenbits.formatter.lexer.statemachine.StateTransitionsLexer;
-import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
-import it.sevenbits.formatter.lexer.statemachine.core.ICommandRepositoryLexer;
-import it.sevenbits.formatter.lexer.statemachine.core.IStateTransitionsLexer;
+import it.sevenbits.formatter.lexer.statemachine.LexerStateTransitions;
+import it.sevenbits.formatter.lexer.statemachine.core.LexerICommand;
+import it.sevenbits.formatter.lexer.statemachine.core.LexerICommandRepository;
+import it.sevenbits.formatter.lexer.statemachine.core.LexerIStateTransitions;
 import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
 
 /**
@@ -19,8 +21,8 @@ import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
 public class Lexer implements ILexer {
 
     private final IReader reader;
-    private ICommandRepositoryLexer commands;
-    private IStateTransitionsLexer transitions;
+    private LexerICommandRepository commands;
+    private LexerIStateTransitions transitions;
     private LexerIContext context = new LexerContext();
 
 
@@ -29,7 +31,7 @@ public class Lexer implements ILexer {
      * @param reader Reader.
      */
     public Lexer(final IReader reader) {
-        this(reader, new CommandRepositoryLexer(), new StateTransitionsLexer());
+        this(reader, new LexerCommandRepository(), new LexerStateTransitions());
     }
 
     /**
@@ -38,7 +40,7 @@ public class Lexer implements ILexer {
      * @param commands Command repository.
      * @param transitions State transitions.
      */
-    public Lexer(final IReader reader, final ICommandRepositoryLexer commands, final IStateTransitionsLexer transitions) {
+    public Lexer(final IReader reader, final LexerICommandRepository commands, final LexerIStateTransitions transitions) {
         this.reader = reader;
         this.commands = commands;
         this.transitions = transitions;
@@ -54,7 +56,7 @@ public class Lexer implements ILexer {
             IReader postponeReader = new StringReader(context.getPostponeBuffer().toString());
             while (postponeReader.hasNextChars() && state != null) {
                 char c = postponeReader.readChar();
-                ICommandLexer command = commands.getCommand(state, c);
+                LexerICommand command = commands.getCommand(state, c);
                 command.execute(c, context);
                 state = transitions.getNextState(state, c);
 
@@ -63,7 +65,7 @@ public class Lexer implements ILexer {
 
             while (reader.hasNextChars() && state != null) {
                 char c = reader.readChar();
-                ICommandLexer command = commands.getCommand(state, c);
+                LexerICommand command = commands.getCommand(state, c);
                 command.execute(c, context);
                 state = transitions.getNextState(state, c);
 

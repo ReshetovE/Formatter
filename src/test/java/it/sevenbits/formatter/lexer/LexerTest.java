@@ -1,25 +1,17 @@
-package it.sevenbits.formatter.implementation.lexer;
+package it.sevenbits.formatter.lexer;
 
 import it.sevenbits.formatter.implementation.core.IToken;
-import it.sevenbits.formatter.implementation.statemachine.State;
 import it.sevenbits.formatter.io.core_io.IReader;
-import it.sevenbits.formatter.io.core_io.ReaderException;
 import it.sevenbits.formatter.io.string_io.StringReader;
-import it.sevenbits.formatter.lexer.ILexer;
-import it.sevenbits.formatter.lexer.statemachine.core.IStateTransitionsLexer;
+import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.Lexer;
-import it.sevenbits.formatter.lexer.LexerException;
-import it.sevenbits.formatter.lexer.statemachine.core.ICommandLexer;
-import it.sevenbits.formatter.lexer.statemachine.core.ICommandRepositoryLexer;
-import org.junit.Ignore;
+import it.sevenbits.formatter.lexer.core.LexerException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyChar;
-import static org.mockito.Mockito.*;
 
 public class LexerTest {
 
@@ -61,11 +53,11 @@ public class LexerTest {
 ////        when(reader.hasNextChars()).thenReturn(true, false);
 ////        when(reader.readChar()).thenReturn('a');
 //
-//        ICommandLexer command = mock(ICommandLexer.class);
-//        ICommandRepositoryLexer commands = mock(ICommandRepositoryLexer.class);
+//        LexerICommand command = mock(LexerICommand.class);
+//        LexerICommandRepository commands = mock(LexerICommandRepository.class);
 //        when(commands.getCommand(any(State.class), anyChar())).thenReturn(command);
 //
-//        IStateTransitionsLexer transitions = mock(IStateTransitionsLexer.class);
+//        LexerIStateTransitions transitions = mock(LexerIStateTransitions.class);
 //
 //
 //        ILexer lexer = new Lexer(reader, commands, transitions);
@@ -223,20 +215,97 @@ public class LexerTest {
 
     @Test
     public void testStar1() throws LexerException {
-        IReader reader = new StringReader("//*/");
+        IReader reader = new StringReader(";");
         ILexer lexer = new Lexer(reader);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
-        assertEquals("SingleLineComment", token.getName());
-        assertEquals("//", token.getLexeme());
+        assertEquals("Semicolon", token.getName());
+        assertEquals(";", token.getLexeme());
 
-        assertTrue(lexer.hasMoreTokens());
-        token = lexer.readToken();
-        assertEquals("CloseMultiLineComment", token.getName());
-        assertEquals("*/", token.getLexeme());
 
         assertFalse(lexer.hasMoreTokens());
     }
 
+    @Test
+    public void testForTest() throws LexerException {
+        IReader reader = new StringReader("for(");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("ForLoops", token.getName());
+        assertEquals("for", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("(", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
+    }
+
+    @Test
+    public void testSecondForTest() throws LexerException {
+        IReader reader = new StringReader("fo^");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("fo", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("^", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
+    }
+
+    @Test
+    public void testCloseRoundBracket() throws LexerException {
+        IReader reader = new StringReader("(a)");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("(", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("Char", token.getName());
+        assertEquals("a", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("CloseRoundBracket", token.getName());
+        assertEquals(")", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
+    }
+
+    @Test
+    public void testIgnoreStringLiteral() throws LexerException {
+        IReader reader = new StringReader("\"\\\"\"");
+        ILexer lexer = new Lexer(reader);
+
+        assertTrue(lexer.hasMoreTokens());
+        IToken token = lexer.readToken();
+        assertEquals("StringLiteral", token.getName());
+        assertEquals("\"", token.getLexeme());
+
+        assertTrue(lexer.hasMoreTokens());
+        token = lexer.readToken();
+        assertEquals("IgnoreStringLiteral", token.getName());
+        assertEquals("\\\"", token.getLexeme());
+        assertTrue(lexer.hasMoreTokens());
+
+        token = lexer.readToken();
+        assertEquals("StringLiteral", token.getName());
+        assertEquals("\"", token.getLexeme());
+
+        assertFalse(lexer.hasMoreTokens());
+    }
 }

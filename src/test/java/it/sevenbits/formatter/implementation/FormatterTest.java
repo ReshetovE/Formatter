@@ -6,7 +6,7 @@ import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.io.core_io.IWriter;
 import it.sevenbits.formatter.io.string_io.StringReader;
 import it.sevenbits.formatter.io.string_io.StringWriter;
-import it.sevenbits.formatter.lexer.ILexer;
+import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.Lexer;
 import org.junit.Test;
 
@@ -126,8 +126,6 @@ public class FormatterTest {
         IFormatter formatter = new Formatter();
         formatter.format(lexer, writer);
         assertEquals("a{\n" +
-                "\n" +
-                "\n" +
                 "    ;\n" +
                 "    p;\n" +
                 "}", writer.toString());
@@ -181,13 +179,52 @@ public class FormatterTest {
     @Test
     public void testMultiLineComment() throws FormatterException {
         IReader reader = new StringReader(
-                "/*{}*5*/"
+                "\n/*{}*5*/"
         );
         IWriter writer = new StringWriter();
         ILexer lexer = new Lexer(reader);
 
         IFormatter formatter = new Formatter();
         formatter.format(lexer, writer);
-        assertEquals("/*{}*5*/", writer.toString());
+        assertEquals("\n/*{}*5*/", writer.toString());
+    }
+
+    @Test
+    public void testForLoops() throws FormatterException {
+        IReader reader = new StringReader(
+                "for (int i = 0; i < 10; i++) {"
+        );
+        IWriter writer = new StringWriter();
+        ILexer lexer = new Lexer(reader);
+
+        IFormatter formatter = new Formatter();
+        formatter.format(lexer, writer);
+        assertEquals("for (int i = 0; i < 10; i++) {", writer.toString());
+    }
+
+    @Test
+    public void testSecondForLoops() throws FormatterException {
+        IReader reader = new StringReader(
+                "for {};;\n{)"
+        );
+        IWriter writer = new StringWriter();
+        ILexer lexer = new Lexer(reader);
+
+        IFormatter formatter = new Formatter();
+        formatter.format(lexer, writer);
+        assertEquals("for {};;\n{)", writer.toString());
+    }
+
+    @Test
+    public void testIgnoreStringLiteral() throws FormatterException {
+        IReader reader = new StringReader(
+                "\"\\\"\""
+        );
+        IWriter writer = new StringWriter();
+        ILexer lexer = new Lexer(reader);
+
+        IFormatter formatter = new Formatter();
+        formatter.format(lexer, writer);
+        assertEquals("\"\\\"\"", writer.toString());
     }
 }

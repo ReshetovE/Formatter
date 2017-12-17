@@ -7,6 +7,7 @@ import it.sevenbits.formatter.implementation.statemachine.core.ICommandRepositor
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertSame;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -23,6 +24,6 @@ public class CommandRepositoryTest {
 
         command = commandRepository.getCommand(new State("NewLineState"), token);
 
-        assertEquals(command, new NopeCommand());
+        assertNotEquals(command, new NopeCommand());
     }
 }

@@ -4,13 +4,13 @@ import it.sevenbits.formatter.lexer.statemachine.core.LexerICommand;
 import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
 
 /**
- * Default command implements.
+ * Cycle command.
  */
-public class IntactCommand implements LexerICommand {
+public class ForLoopsCommand implements LexerICommand {
 
     @Override
     public void execute(final char c, final LexerIContext context) {
         context.appendLexeme(c);
-        context.setTokenName("Char");
+        context.setTokenName("ForLoops");
     }
 }

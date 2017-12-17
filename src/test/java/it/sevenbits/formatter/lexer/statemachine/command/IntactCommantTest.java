@@ -1,11 +1,11 @@
-package it.sevenbits.formatter.implementation.lexer.statemachine.command;
+package it.sevenbits.formatter.lexer.statemachine.command;
 
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.io.string_io.StringReader;
-import it.sevenbits.formatter.lexer.ILexer;
+import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.Lexer;
-import it.sevenbits.formatter.lexer.LexerException;
+import it.sevenbits.formatter.lexer.core.LexerException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -2,7 +2,7 @@ package it.sevenbits.formatter;
 
 
 import it.sevenbits.formatter.implementation.core.IFormatter;
-import it.sevenbits.formatter.lexer.ILexer;
+import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.io.file_io.FileReader;
 import it.sevenbits.formatter.io.file_io.FileWriter;
 import it.sevenbits.formatter.implementation.Formatter;

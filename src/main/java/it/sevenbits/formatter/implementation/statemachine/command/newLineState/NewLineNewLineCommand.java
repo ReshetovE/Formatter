@@ -12,6 +12,6 @@ import it.sevenbits.formatter.io.core_io.WriterException;
 public class NewLineNewLineCommand implements ICommand {
     @Override
     public void execute(final IToken token, final IWriter writer, final IContext context) throws WriterException {
-        context.writeNewLine(writer);
+        //context.writeNewLine(writer);
     }
 }
