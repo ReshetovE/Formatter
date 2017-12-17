@@ -6,6 +6,7 @@ import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.io.core_io.IWriter;
 import it.sevenbits.formatter.io.string_io.StringReader;
 import it.sevenbits.formatter.io.string_io.StringWriter;
+import it.sevenbits.formatter.lexer.LexerFactory;
 import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.Lexer;
 import org.junit.Test;
@@ -24,10 +25,9 @@ public class FormatterTest {
                         "}"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("p {\n" +
                                 "    abc() {\n" +
                                 "        fun( );\n" +
@@ -41,10 +41,9 @@ public class FormatterTest {
                 "a;   b"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("a;\nb", writer.toString());
     }
 
@@ -54,10 +53,9 @@ public class FormatterTest {
                 "sdfsdf;dfsd"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("sdfsdf;\ndfsd", writer.toString());
     }
 
@@ -69,10 +67,9 @@ public class FormatterTest {
                         "{"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("a{\n" +
                               "    p;\n" +
                               "    {", writer.toString());
@@ -86,10 +83,9 @@ public class FormatterTest {
                         "}"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("a{\n" +
                 "    p;\n" +
                 "}", writer.toString());
@@ -103,10 +99,9 @@ public class FormatterTest {
                         "}"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("a{\n" +
                                 "    ;\n" +
                                 "    p;\n" +
@@ -121,10 +116,9 @@ public class FormatterTest {
                         "}"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("a{\n" +
                 "    ;\n" +
                 "    p;\n" +
@@ -137,10 +131,9 @@ public class FormatterTest {
                 "\"{};\n sdf  sdv\""
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("\"{};\n sdf  sdv\"", writer.toString());
     }
 
@@ -152,10 +145,9 @@ public class FormatterTest {
                         "//c;c"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("//ab{}\n" +
                                 "{\n" +
                                 "    //c;c", writer.toString());
@@ -168,10 +160,9 @@ public class FormatterTest {
                         "sdf"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("/* {};\n" +
                               "sdf", writer.toString());
     }
@@ -179,14 +170,13 @@ public class FormatterTest {
     @Test
     public void testMultiLineComment() throws FormatterException {
         IReader reader = new StringReader(
-                "\n/*{}*5*/"
+                "\n/*{}*5*//*"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
-        assertEquals("\n/*{}*5*/", writer.toString());
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
+        assertEquals("\n/*{}*5*//*", writer.toString());
     }
 
     @Test
@@ -195,10 +185,9 @@ public class FormatterTest {
                 "for (int i = 0; i < 10; i++) {"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("for (int i = 0; i < 10; i++) {", writer.toString());
     }
 
@@ -208,10 +197,9 @@ public class FormatterTest {
                 "for {};;\n{)"
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("for {};;\n{)", writer.toString());
     }
 
@@ -221,10 +209,10 @@ public class FormatterTest {
                 "\"\\\"\""
         );
         IWriter writer = new StringWriter();
-        ILexer lexer = new Lexer(reader);
 
-        IFormatter formatter = new Formatter();
-        formatter.format(lexer, writer);
+
+        IFormatter formatter = new Formatter(new LexerFactory());
+        formatter.format(reader, writer);
         assertEquals("\"\\\"\"", writer.toString());
     }
 }

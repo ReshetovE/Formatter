@@ -1,7 +1,6 @@
 package it.sevenbits.formatter.implementation.statemachine.core;
 
 import it.sevenbits.formatter.implementation.core.IToken;
-import it.sevenbits.formatter.io.core_io.IWriter;
 import it.sevenbits.formatter.io.core_io.WriterException;
 
 /**
