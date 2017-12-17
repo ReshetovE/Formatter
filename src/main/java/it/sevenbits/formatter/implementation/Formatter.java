@@ -27,7 +27,7 @@ public class Formatter implements IFormatter {
     public void format(final ILexer lexer, final IWriter out) throws FormatterException {
 
          IState state = new State("DefaultState");
-         IContext context = new Context();
+         IContext context = new Context(out);
          CommandRepository commands = new CommandRepository();
          StateTransitions transitions = new StateTransitions();
          try {
@@ -35,7 +35,7 @@ public class Formatter implements IFormatter {
                  IToken token = lexer.readToken();
 
                  ICommand command = commands.getCommand(state, token);
-                 command.execute(token, out, context);
+                 command.execute(token, context);
 
                  state = transitions.nextState(state, token);
              }

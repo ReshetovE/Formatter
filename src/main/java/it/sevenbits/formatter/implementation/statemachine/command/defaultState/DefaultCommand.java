@@ -12,7 +12,7 @@ import it.sevenbits.formatter.io.core_io.WriterException;
 public class DefaultCommand implements ICommand {
 
     @Override
-    public void execute(final IToken token, final IWriter writer, final IContext context) throws WriterException {
-        context.writeLexeme(token, writer);
+    public void execute(final IToken token, final IContext context) throws WriterException {
+        context.writeLexeme(token);
     }
 }

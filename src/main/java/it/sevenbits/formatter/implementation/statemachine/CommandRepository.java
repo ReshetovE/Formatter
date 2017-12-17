@@ -6,7 +6,6 @@ import it.sevenbits.formatter.implementation.statemachine.command.newLineState.C
 import it.sevenbits.formatter.implementation.statemachine.command.newLineState.CloseBracketNewLineCommand;
 import it.sevenbits.formatter.implementation.statemachine.command.defaultState.DefaultCommand;
 import it.sevenbits.formatter.implementation.statemachine.command.defaultState.OpenBracketCommand;
-import it.sevenbits.formatter.implementation.statemachine.command.newLineState.NewLineNewLineCommand;
 import it.sevenbits.formatter.implementation.statemachine.command.newLineState.OpenBracketNewLineCommand;
 import it.sevenbits.formatter.implementation.statemachine.command.defaultState.SemicolonCommand;
 import it.sevenbits.formatter.implementation.statemachine.command.NopeCommand;
@@ -142,7 +141,7 @@ public class CommandRepository implements ICommandRepository {
         map.put(pairNewLineCloseBracket, new CloseBracketNewLineCommand());
         map.put(pairNewLineSemicolon, new SemicolonNewLineCommand());
         map.put(pairNewLineSpace, new NopeCommand());
-        map.put(pairNewLineNewLine, new NewLineNewLineCommand());
+        map.put(pairNewLineNewLine, new NopeCommand());
         map.put(pairNewLineStringLiteral, new DefaultCommand());
         map.put(pairNewLineSingleLineComment, new CharNewLineCommand());
         map.put(pairNewLineOpenMultiLineComment, new CharNewLineCommand());

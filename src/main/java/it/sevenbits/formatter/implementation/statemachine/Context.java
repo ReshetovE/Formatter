@@ -10,20 +10,29 @@ import it.sevenbits.formatter.io.core_io.WriterException;
  */
 public class Context implements IContext {
 
+    private final IWriter writer;
     private int indent = 0;
 
+    /**
+     * Constructor context.
+     * @param writer Input interface FileWriter.
+     */
+    public Context(final IWriter writer) {
+        this.writer = writer;
+    }
+
     @Override
-    public void writeLexeme(final IToken token, final IWriter writer) throws WriterException {
+    public void writeLexeme(final IToken token) throws WriterException {
         writer.write(token.getLexeme());
     }
 
     @Override
-    public void writeNewLine(final IWriter writer) throws WriterException {
+    public void writeNewLine() throws WriterException {
         writer.write("\n");
     }
 
     @Override
-    public void writeIndent(final IWriter writer) throws WriterException {
+    public void writeIndent() throws WriterException {
         final int indentSize = 4;
         try {
             for (int i = 0; i < indent * indentSize; i++) {

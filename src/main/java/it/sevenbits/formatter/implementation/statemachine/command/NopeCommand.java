@@ -11,7 +11,7 @@ import it.sevenbits.formatter.io.core_io.WriterException;
  */
 public class NopeCommand implements ICommand {
     @Override
-    public void execute(final IToken token, final IWriter writer, final IContext context) throws WriterException {
+    public void execute(final IToken token, final IContext context) throws WriterException {
 
     }
 }

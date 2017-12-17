@@ -20,10 +20,10 @@ public class SpaceCommandTest {
     public void testSimple() throws WriterException {
         IWriter writer = new StringWriter();
         IToken token = mock(IToken.class);
-        IContext context = new Context();
+        IContext context = new Context(writer);
         when(token.getLexeme()).thenReturn("   ");
         ICommand command = new NopeCommand();
-        command.execute(token, writer, context);
+        command.execute(token, context);
 
         assertEquals("", writer.toString());
     }
