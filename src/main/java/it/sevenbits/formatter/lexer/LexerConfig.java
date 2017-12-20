@@ -3,6 +3,7 @@ package it.sevenbits.formatter.lexer;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import it.sevenbits.formatter.implementation.statemachine.State;
 import it.sevenbits.formatter.lexer.statemachine.LexerCommandRepository;
@@ -39,20 +40,29 @@ public class LexerConfig {
             JsonArray actions = stateObject.getAsJsonArray("Actions");
             for (JsonElement action: actions) {
                 JsonObject actionObject = action.getAsJsonObject();
-                Character input = actionObject.get("Input").getAsCharacter();
+
+                boolean checkNullChar = actionObject.get("Input").isJsonNull();
+                Character input;
+                if (checkNullChar) {
+                    input = null;
+                } else {
+                    input = actionObject.get("Input").getAsCharacter();
+                }
+
+                boolean checkNullState = actionObject.get("State").isJsonNull();
+                State newState;
+                if (checkNullState) {
+                    newState = null;
+                } else {
+                    newState = new State(actionObject.get("State").getAsString());
+                }
+
                 String command = actionObject.get("Command").getAsString();
-                String newStateName = actionObject.get("State").getAsString();
 
-                System.out.println(input + " " + command + " " + newStateName);
-
-                transitions.insert(currentStateName, input, createState(newStateName));
+                transitions.insert(currentStateName, input, newState);
                 commands.insert(currentStateName, input, createCommand(command));
             }
         }
-    }
-
-    private State createState(final String newStateName) {
-        return new State(newStateName);
     }
 
     /**
@@ -92,10 +102,4 @@ public class LexerConfig {
     }
 }
 
-    /*{
-        "Input": "\u0000",
-        "State": "Default",
-        "Command": "OpenBracketCommand"
-      },
-      */
 

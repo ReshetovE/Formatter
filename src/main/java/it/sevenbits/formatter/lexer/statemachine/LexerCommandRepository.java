@@ -23,17 +23,17 @@ public class LexerCommandRepository implements LexerICommandRepository {
     public LexerCommandRepository() {
         commands = new HashMap<>();
 
-        commands.put(new Pair<>(new State("Default"), null), new IntactCommand());
-        commands.put(new Pair<>(new State("BackSlash"), null), new AppendPostponeCommand());
-        commands.put(new Pair<>(new State("IgnoreStringLiteral"), null), new AppendPostponeCommand());
-        commands.put(new Pair<>(new State("Slash"), null), new AppendPostponeCommand());
-        commands.put(new Pair<>(new State("SingleLineComment"), null), new AppendPostponeCommand());
-        commands.put(new Pair<>(new State("OpenMultiLineComment"), null), new AppendPostponeCommand());
-        commands.put(new Pair<>(new State("Star"), null), new AppendPostponeCommand());
-        commands.put(new Pair<>(new State("CloseMultiLineComment"), null), new AppendPostponeCommand());
-        commands.put(new Pair<>(new State("FFromLoop"), null), new AppendPostponeCommand());
-        commands.put(new Pair<>(new State("FoFromLoop"), null), new AppendPostponeCommand());
-        commands.put(new Pair<>(new State("FullLoop"), null), new AppendPostponeCommand());
+//        commands.put(new Pair<>(new State("Default"), null), new IntactCommand());
+//        commands.put(new Pair<>(new State("BackSlash"), null), new AppendPostponeCommand());
+//        commands.put(new Pair<>(new State("IgnoreStringLiteral"), null), new AppendPostponeCommand());
+//        commands.put(new Pair<>(new State("Slash"), null), new AppendPostponeCommand());
+//        commands.put(new Pair<>(new State("SingleLineComment"), null), new AppendPostponeCommand());
+//        commands.put(new Pair<>(new State("OpenMultiLineComment"), null), new AppendPostponeCommand());
+//        commands.put(new Pair<>(new State("Star"), null), new AppendPostponeCommand());
+//        commands.put(new Pair<>(new State("CloseMultiLineComment"), null), new AppendPostponeCommand());
+//        commands.put(new Pair<>(new State("FFromLoop"), null), new AppendPostponeCommand());
+//        commands.put(new Pair<>(new State("FoFromLoop"), null), new AppendPostponeCommand());
+//        commands.put(new Pair<>(new State("FullLoop"), null), new AppendPostponeCommand());
 
         /*//Default state.
         commands.put(new Pair<>(new State("Default"), null), new IntactCommand());

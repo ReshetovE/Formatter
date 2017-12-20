@@ -64,8 +64,7 @@ public class Lexer implements ILexer {
             }
             context.createNewPostpone();
 
-            assert state != null;
-            while (reader.hasNextChars() && state.toString().equals("Final")) {
+            while (reader.hasNextChars() && state != null) {
                 char c = reader.readChar();
                 LexerICommand command = commands.getCommand(state, c);
                 command.execute(c, context);

@@ -18,7 +18,6 @@ public class LexerStateTransitions implements LexerIStateTransitions {
      * Constructor state transitions.
      */
     public LexerStateTransitions() {
-        states.put(new Pair<>(new State("Default"), null), new State("Final"));
 /*
         states.put(new Pair<>(new State("Default"), '\\'), new State("BackSlash"));
         states.put(new Pair<>(new State("BackSlash"), '"'), new State("IgnoreStringLiteral"));

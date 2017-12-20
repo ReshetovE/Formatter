@@ -6,6 +6,7 @@ import it.sevenbits.formatter.io.string_io.StringReader;
 import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.Lexer;
 import it.sevenbits.formatter.lexer.core.LexerException;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -18,7 +19,7 @@ public class LexerTest {
     @Test
     public void testSimpleTokenize() throws LexerException {
         IReader reader = new StringReader(
-                "с"
+                "c"
         );
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -304,4 +305,24 @@ public class LexerTest {
 
         assertFalse(lexer.hasMoreTokens());
     }
+
+//    @Test
+//    public void testBigTest() throws LexerException {
+//        IReader reader = new StringReader("*//*");
+//        LexerConfig lexerConfig = new LexerConfig();
+//        ILexer lexer = new Lexer(reader, lexerConfig);
+//
+//        assertTrue(lexer.hasMoreTokens());
+//        IToken token = lexer.readToken();
+//        assertEquals("CloseMultiLineComment", token.getName());
+//        assertEquals("*/", token.getLexeme());
+//
+//        assertTrue(lexer.hasMoreTokens());
+//        token = lexer.readToken();
+//        assertEquals("OpenMultiLineComment", token.getName());
+//        assertEquals("/*", token.getLexeme());
+//
+//        assertFalse(lexer.hasMoreTokens());
+//    }
+
 }

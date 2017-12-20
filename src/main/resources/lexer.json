@@ -4,62 +4,202 @@
     "Actions": [
       {
         "Input": null,
-        "State": "Default",
-        "Command": "OpenBracketCommand"
+        "State": null,
+        "Command": "IntactCommand"
       },
       {
-        "Input": "\u003b",
-        "State": "Final",
+        "Input": ";",
+        "State": null,
         "Command": "SemicolonCommand"
       },
       {
-        "Input": "\u007b",
-        "State": "Default",
+        "Input": "{",
+        "State": null,
         "Command": "OpenBracketCommand"
       },
       {
-        "Input": "\u007d",
-        "State": "Default",
+        "Input": "}",
+        "State": null,
         "Command": "CloseBracketCommand"
       },
       {
-        "Input": "\u0020",
-        "State": "Default",
+        "Input": " ",
+        "State": null,
         "Command": "SpaceCommand"
       },
       {
-        "Input": "\u000a",
-        "State": "Default",
+        "Input": "\n",
+        "State": null,
         "Command": "NewLineCommand"
       },
       {
-        "Input": "\u0022",
-        "State": "Default",
+        "Input": "\"",
+        "State": null,
         "Command": "StringLiteralCommand"
       },
       {
-        "Input": "\u002f",
+        "Input": "/",
         "State": "Slash",
         "Command": "IntactCommand"
       },
       {
-        "Input": "\u002a",
+        "Input": "*",
         "State": "Star",
         "Command": "IntactCommand"
       },
       {
-        "Input": "\u0066",
+        "Input": "f",
         "State": "FFromLoop",
         "Command": "IntactCommand"
       },
       {
-        "Input": "\u0029",
-        "State": "Default",
+        "Input": ")",
+        "State": null,
         "Command": "CloseRoundBracketCommand"
       },
       {
-        "Input": "\u005c",
+        "Input": "\\",
         "State": "BackSlash",
+        "Command": "IntactCommand"
+      }
+    ]
+  },
+  {
+    "State": "Star",
+    "Actions": [
+      {
+        "Input": null,
+        "State": null,
+        "Command": "AppendPostponeCommand"
+      },
+      {
+        "Input": "/",
+        "State": "CloseMultiLineComment",
+        "Command": "CloseMultiLineCommentCommand"
+      }
+    ]
+  },
+  {
+    "State": "Slash",
+    "Actions": [
+      {
+        "Input": null,
+        "State": null,
+        "Command": "AppendPostponeCommand"
+      },
+      {
+        "Input": "/",
+        "State": "SingleLineComment",
+        "Command": "SingleLineCommentCommand"
+      },
+      {
+        "Input": "*",
+        "State": "OpenMultiLineComment",
+        "Command": "OpenMultiLineCommentCommand"
+      }
+    ]
+  },
+  {
+    "State": "SingleLineComment",
+    "Actions": [
+      {
+        "Input": null,
+        "State": null,
+        "Command": "AppendPostponeCommand"
+      }
+    ]
+  },
+  {
+    "State": "OpenMultiLineComment",
+    "Actions": [
+      {
+        "Input": null,
+        "State": null,
+        "Command": "AppendPostponeCommand"
+      },
+      {
+        "Input": "/",
+        "State": "Slash",
+        "Command": "IntactCommand"
+      }
+    ]
+  },
+  {
+    "State": "BackSlash",
+    "Actions": [
+      {
+        "Input": null,
+        "State": null,
+        "Command": "AppendPostponeCommand"
+      },
+      {
+        "Input": "\"",
+        "State": "IgnoreStringLiteral",
+        "Command": "IgnoreStringLiteralCommand"
+      }
+    ]
+  },
+  {
+    "State": "IgnoreStringLiteral",
+    "Actions": [
+      {
+        "Input": null,
+        "State": null,
+        "Command": "AppendPostponeCommand"
+      }
+    ]
+  },
+  {
+    "State": "FFromLoop",
+    "Actions": [
+      {
+        "Input": null,
+        "State": null,
+        "Command": "AppendPostponeCommand"
+      },
+      {
+        "Input": "o",
+        "State": "FoFromLoop",
+        "Command": "IntactCommand"
+      }
+    ]
+  },
+  {
+    "State": "FoFromLoop",
+    "Actions": [
+      {
+        "Input": null,
+        "State": null,
+        "Command": "AppendPostponeCommand"
+      },
+      {
+        "Input": "r",
+        "State": "FullLoop",
+        "Command": "ForLoopsCommand"
+      }
+    ]
+  },
+  {
+    "State": "FullLoop",
+    "Actions": [
+      {
+        "Input": null,
+        "State": null,
+        "Command": "AppendPostponeCommand"
+      }
+    ]
+  },
+  {
+    "State": "CloseMultiLineComment",
+    "Actions": [
+      {
+        "Input": null,
+        "State": null,
+        "Command": "AppendPostponeCommand"
+      },
+      {
+        "Input": "/",
+        "State": "Slash",
         "Command": "IntactCommand"
       }
     ]
