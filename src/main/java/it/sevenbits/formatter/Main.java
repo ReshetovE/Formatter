@@ -1,6 +1,7 @@
 package it.sevenbits.formatter;
 
 
+import it.sevenbits.formatter.implementation.FormatterConfig;
 import it.sevenbits.formatter.implementation.core.IFormatter;
 import it.sevenbits.formatter.lexer.LexerFactory;
 import it.sevenbits.formatter.io.file_io.FileReader;
@@ -19,12 +20,11 @@ public class Main {
      */
 
     public static void main(final String[] args) throws Exception {
-
         try (
             FileReader in = new FileReader(args[0]);
             FileWriter out = new FileWriter(args[1])
         ) {
-            IFormatter format = new Formatter(new LexerFactory());
+            IFormatter format = new Formatter(new LexerFactory(), new FormatterConfig());
             format.format(in, out);
         }
     }

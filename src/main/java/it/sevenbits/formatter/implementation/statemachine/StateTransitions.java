@@ -206,4 +206,9 @@ public class StateTransitions implements IStateTransitions {
         Pair currentPair = new Pair<>(state, token.getName());
         return map.get(currentPair);
     }
+
+    @Override
+    public void insert(final String currentStateName, final String tokenName, final String state) {
+        map.put(new Pair<>(new State(currentStateName), tokenName), new State(state));
+    }
 }

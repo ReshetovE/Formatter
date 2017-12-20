@@ -3,7 +3,6 @@ package it.sevenbits.formatter.lexer;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import it.sevenbits.formatter.implementation.statemachine.State;
 import it.sevenbits.formatter.lexer.statemachine.LexerCommandRepository;
@@ -16,7 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * Parse config file.
+ * Parse lexer config file.
  */
 public class LexerConfig {
 

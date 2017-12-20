@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.implementation.statemachine.command.newLineState;
+package it.sevenbits.formatter.implementation.statemachine.command;
 
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.implementation.statemachine.core.ICommand;

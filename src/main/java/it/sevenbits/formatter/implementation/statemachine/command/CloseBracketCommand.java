@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.implementation.statemachine.command.newLineState;
+package it.sevenbits.formatter.implementation.statemachine.command;
 
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.implementation.statemachine.core.ICommand;
@@ -6,9 +6,9 @@ import it.sevenbits.formatter.implementation.statemachine.core.IContext;
 import it.sevenbits.formatter.io.core_io.WriterException;
 
 /**
- * Char new line command implements.
+ * Close bracket command implements.
  */
-public class CloseBracketNewLineCommand implements ICommand {
+public class CloseBracketCommand implements ICommand {
 
     @Override
     public void execute(final IToken token, final IContext context) throws WriterException {

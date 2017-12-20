@@ -1,15 +1,15 @@
 package it.sevenbits.formatter.implementation.statemachine;
 
 import it.sevenbits.formatter.implementation.core.IToken;
-import it.sevenbits.formatter.implementation.statemachine.command.defaultState.CloseBracketCommand;
-import it.sevenbits.formatter.implementation.statemachine.command.newLineState.CharNewLineCommand;
-import it.sevenbits.formatter.implementation.statemachine.command.newLineState.CloseBracketNewLineCommand;
-import it.sevenbits.formatter.implementation.statemachine.command.defaultState.DefaultCommand;
-import it.sevenbits.formatter.implementation.statemachine.command.defaultState.OpenBracketCommand;
-import it.sevenbits.formatter.implementation.statemachine.command.newLineState.OpenBracketNewLineCommand;
-import it.sevenbits.formatter.implementation.statemachine.command.defaultState.SemicolonCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.CloseBracketCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.CharNewLineCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.CloseBracketNewLineCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.DefaultCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.OpenBracketCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.OpenBracketNewLineCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.SemicolonCommand;
 import it.sevenbits.formatter.implementation.statemachine.command.NopeCommand;
-import it.sevenbits.formatter.implementation.statemachine.command.newLineState.SemicolonNewLineCommand;
+import it.sevenbits.formatter.implementation.statemachine.command.SemicolonNewLineCommand;
 import it.sevenbits.formatter.implementation.statemachine.core.ICommand;
 import it.sevenbits.formatter.implementation.statemachine.core.ICommandRepository;
 import it.sevenbits.formatter.implementation.statemachine.core.IState;
@@ -216,5 +216,10 @@ public class CommandRepository implements ICommandRepository {
     public ICommand getCommand(final IState state, final IToken token) {
         Pair currentPair = new Pair<>(state, token.getName());
         return map.get(currentPair);
+    }
+
+    @Override
+    public void insert(final String currentStateName, final String tokenName, final ICommand command) {
+        map.put(new Pair<>(new State(currentStateName), tokenName), command);
     }
 }

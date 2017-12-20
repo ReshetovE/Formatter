@@ -2,13 +2,13 @@ package it.sevenbits.formatter.implementation;
 
 import it.sevenbits.formatter.implementation.core.FormatterException;
 import it.sevenbits.formatter.implementation.core.IFormatter;
-import it.sevenbits.formatter.implementation.statemachine.CommandRepository;
 import it.sevenbits.formatter.implementation.statemachine.Context;
 import it.sevenbits.formatter.implementation.statemachine.core.ICommand;
+import it.sevenbits.formatter.implementation.statemachine.core.ICommandRepository;
 import it.sevenbits.formatter.implementation.statemachine.core.IContext;
 import it.sevenbits.formatter.implementation.statemachine.core.IState;
 import it.sevenbits.formatter.implementation.statemachine.State;
-import it.sevenbits.formatter.implementation.statemachine.StateTransitions;
+import it.sevenbits.formatter.implementation.statemachine.core.IStateTransitions;
 import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.lexer.LexerConfig;
 import it.sevenbits.formatter.lexer.core.ILexer;
@@ -20,18 +20,19 @@ import it.sevenbits.formatter.lexer.core.ILexerFactory;
  * Formatter implementation.
  */
 public class Formatter implements IFormatter {
-    private CommandRepository commands;
-    private StateTransitions transitions;
+    private ICommandRepository commands;
+    private IStateTransitions transitions;
     private ILexerFactory lexerFactory;
 
     /**
      * Constructor formatter.
      * @param lexerFactory Lexer factory.
+     * @param formatterConfig Formatter config.
      */
-    public Formatter(final ILexerFactory lexerFactory) {
+    public Formatter(final ILexerFactory lexerFactory, final FormatterConfig formatterConfig) {
         this.lexerFactory = lexerFactory;
-        commands = new CommandRepository();
-        transitions = new StateTransitions();
+        this.commands = formatterConfig.getCommand();
+        this.transitions = formatterConfig.getState();
     }
 
     /**
