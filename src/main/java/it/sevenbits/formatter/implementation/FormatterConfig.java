@@ -38,7 +38,7 @@ public class FormatterConfig {
             for (JsonElement action: actions) {
                 JsonObject actionObject = action.getAsJsonObject();
 
-                String input = actionObject.get("Token").getAsString();
+                String input = actionObject.get("Input").getAsString();
                 String newState = actionObject.get("State").getAsString();
                 String command = actionObject.get("Command").getAsString();
 

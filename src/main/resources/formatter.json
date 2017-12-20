@@ -1,0 +1,422 @@
+[
+  {
+    "State": "DefaultState",
+    "Actions": [
+      {
+        "Input": "Char",
+        "State": "DefaultState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "OpenBracket",
+        "State": "NewLineState",
+        "Command": "OpenBracketCommand"
+      },
+      {
+        "Input": "CloseBracket",
+        "State": "NewLineState",
+        "Command": "CloseBracketCommand"
+      },
+      {
+        "Input": "Semicolon",
+        "State": "NewLineState",
+        "Command": "SemicolonCommand"
+      },
+      {
+        "Input": "Space",
+        "State": "DefaultState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "NewLine",
+        "State": "NewLineState",
+        "Command": "NopeCommand"
+      },
+      {
+        "Input": "StringLiteral",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "SingleLineComment",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "OpenMultiLineComment",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseMultiLineComment",
+        "State": "DefaultState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "ForLoops",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseRoundBracket",
+        "State": "DefaultState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "IgnoreStringLiteral",
+        "State": "DefaultState",
+        "Command": "DefaultCommand"
+      }
+    ]
+  },
+  {
+    "State": "NewLineState",
+    "Actions": [
+      {
+        "Input": "Char",
+        "State": "DefaultState",
+        "Command": "CharNewLineCommand"
+      },
+      {
+        "Input": "OpenBracket",
+        "State": "NewLineState",
+        "Command": "OpenBracketNewLineCommand"
+      },
+      {
+        "Input": "CloseBracket",
+        "State": "NewLineState",
+        "Command": "CloseBracketNewLineCommand"
+      },
+      {
+        "Input": "Semicolon",
+        "State": "NewLineState",
+        "Command": "SemicolonNewLineCommand"
+      },
+      {
+        "Input": "Space",
+        "State": "NewLineState",
+        "Command": "NopeCommand"
+      },
+      {
+        "Input": "NewLine",
+        "State": "NewLineState",
+        "Command": "NopeCommand"
+      },
+      {
+        "Input": "StringLiteral",
+        "State": "StringLiteralState",
+        "Command": "CharNewLineCommand"
+      },
+      {
+        "Input": "SingleLineComment",
+        "State": "SingleLineCommentState",
+        "Command": "CharNewLineCommand"
+      },
+      {
+        "Input": "OpenMultiLineComment",
+        "State": "MultiLineCommentState",
+        "Command": "CharNewLineCommand"
+      },
+      {
+        "Input": "CloseMultiLineComment",
+        "State": "DefaultState",
+        "Command": "CharNewLineCommand"
+      },
+      {
+        "Input": "ForLoops",
+        "State": "ForLoopsState",
+        "Command": "CharNewLineCommand"
+      },
+      {
+        "Input": "CloseRoundBracket",
+        "State": "DefaultState",
+        "Command": "CharNewLineCommand"
+      },
+      {
+        "Input": "IgnoreStringLiteral",
+        "State": "DefaultState",
+        "Command": "CharNewLineCommand"
+      }
+    ]
+  },
+  {
+    "State": "StringLiteralState",
+    "Actions": [
+      {
+        "Input": "Char",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "OpenBracket",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseBracket",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "Semicolon",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "Space",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "NewLine",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "StringLiteral",
+        "State": "DefaultState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "SingleLineComment",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "OpenMultiLineComment",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseMultiLineComment",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "ForLoops",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseRoundBracket",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "IgnoreStringLiteral",
+        "State": "StringLiteralState",
+        "Command": "DefaultCommand"
+      }
+    ]
+  },
+  {
+    "State": "SingleLineCommentState",
+    "Actions": [
+      {
+        "Input": "Char",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "OpenBracket",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseBracket",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "Semicolon",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "Space",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "NewLine",
+        "State": "NewLineState",
+        "Command": "NopeCommand"
+      },
+      {
+        "Input": "StringLiteral",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "SingleLineComment",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "OpenMultiLineComment",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseMultiLineComment",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "ForLoops",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseRoundBracket",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "IgnoreStringLiteral",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      }
+    ]
+  },
+  {
+    "State": "MultiLineCommentState",
+    "Actions": [
+      {
+        "Input": "Char",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "OpenBracket",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseBracket",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "Semicolon",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "Space",
+        "State": "SingleLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "NewLine",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "StringLiteral",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "SingleLineComment",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "OpenMultiLineComment",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseMultiLineComment",
+        "State": "DefaultState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "ForLoops",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseRoundBracket",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "IgnoreStringLiteral",
+        "State": "MultiLineCommentState",
+        "Command": "DefaultCommand"
+      }
+    ]
+  },
+  {
+    "State": "ForLoopsState",
+    "Actions": [
+      {
+        "Input": "Char",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "OpenBracket",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseBracket",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "Semicolon",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "Space",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "NewLine",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "StringLiteral",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "SingleLineComment",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "OpenMultiLineComment",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseMultiLineComment",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "ForLoops",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "CloseRoundBracket",
+        "State": "DefaultState",
+        "Command": "DefaultCommand"
+      },
+      {
+        "Input": "IgnoreStringLiteral",
+        "State": "ForLoopsState",
+        "Command": "DefaultCommand"
+      }
+    ]
+  }
+]

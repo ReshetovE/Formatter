@@ -27,6 +27,8 @@ public class CommandRepository implements ICommandRepository {
      * Constructor command repository.
      */
     public CommandRepository() {
+        map = new HashMap<>();
+        /*
 //Default state.
         Pair<State, String> pairDefaultSimpleChar = new Pair<>(new State("DefaultState"), "Char");
         Pair<State, String> pairDefaultOpenBracket = new Pair<>(new State("DefaultState"), "OpenBracket");
@@ -142,7 +144,7 @@ public class CommandRepository implements ICommandRepository {
         map.put(pairNewLineSemicolon, new SemicolonNewLineCommand());
         map.put(pairNewLineSpace, new NopeCommand());
         map.put(pairNewLineNewLine, new NopeCommand());
-        map.put(pairNewLineStringLiteral, new DefaultCommand());
+        map.put(pairNewLineStringLiteral, new CharNewLineCommand());
         map.put(pairNewLineSingleLineComment, new CharNewLineCommand());
         map.put(pairNewLineOpenMultiLineComment, new CharNewLineCommand());
         map.put(pairNewLineCloseMultiLineComment, new CharNewLineCommand());
@@ -208,7 +210,7 @@ public class CommandRepository implements ICommandRepository {
         map.put(pairForLoopsCloseMultiLineComment, new DefaultCommand());
         map.put(pairForLoopsForLoops, new DefaultCommand());
         map.put(pairForLoopsCloseRoundBracket, new DefaultCommand());
-        map.put(pairForLoopsIgnoreStringLiteral, new DefaultCommand());
+        map.put(pairForLoopsIgnoreStringLiteral, new DefaultCommand());*/
     }
 
 

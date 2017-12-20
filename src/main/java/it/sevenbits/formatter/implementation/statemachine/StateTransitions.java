@@ -17,6 +17,8 @@ public class StateTransitions implements IStateTransitions {
      * Constructor command repository.
      */
     public StateTransitions() {
+        map = new HashMap<>();
+        /*
         //Default state.
         Pair<State, String> pairDefaultSimpleChar = new Pair<>(new State("DefaultState"), "Char");
         Pair<State, String> pairDefaultOpenBracket = new Pair<>(new State("DefaultState"), "OpenBracket");
@@ -197,7 +199,7 @@ public class StateTransitions implements IStateTransitions {
         map.put(pairForLoopsCloseMultiLineComment, new State("ForLoopsState"));
         map.put(pairForLoopsForLoops, new State("ForLoopsState"));
         map.put(pairForLoopsCloseRoundBracket, new State("DefaultState"));
-        map.put(pairForLoopsIgnoreStringLiteral, new State("ForLoopsState"));
+        map.put(pairForLoopsIgnoreStringLiteral, new State("ForLoopsState"));*/
     }
 
 
