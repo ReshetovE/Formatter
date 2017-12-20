@@ -4,6 +4,7 @@ package it.sevenbits.formatter.implementation.core;
  * Token interface.
  */
 public interface IToken {
+
     /**
      * Getter name token.
      * @return Name lexem;
@@ -15,5 +16,4 @@ public interface IToken {
      * @return This lexem.
      */
     String getLexeme();
-
 }

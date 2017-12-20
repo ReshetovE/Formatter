@@ -5,7 +5,7 @@ import it.sevenbits.formatter.implementation.statemachine.State;
 /**
  * Interface for CommandRepository class.
  */
-public interface LexerICommandRepository {
+public interface ILexerCommandRepository {
 
     /**
      * Get new command.
@@ -13,7 +13,7 @@ public interface LexerICommandRepository {
      * @param c Char.
      * @return New command.
      */
-    LexerICommand getCommand(State state, char c);
+    ILexerCommand getCommand(State state, char c);
 
     /**
      * Insert new pair for get new command.
@@ -21,5 +21,5 @@ public interface LexerICommandRepository {
      * @param input Char.
      * @param command Name new command.
      */
-    void insert(String state, Character input, LexerICommand command);
+    void insert(String state, Character input, ILexerCommand command);
 }

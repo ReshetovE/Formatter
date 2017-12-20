@@ -8,10 +8,10 @@ import it.sevenbits.formatter.io.string_io.StringReader;
 import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.core.LexerException;
 import it.sevenbits.formatter.lexer.statemachine.LexerContext;
-import it.sevenbits.formatter.lexer.statemachine.core.LexerICommand;
-import it.sevenbits.formatter.lexer.statemachine.core.LexerICommandRepository;
-import it.sevenbits.formatter.lexer.statemachine.core.LexerIStateTransitions;
-import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerCommand;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerCommandRepository;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerStateTransitions;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerContext;
 
 /**
  * Lexical analyzer.
@@ -19,9 +19,9 @@ import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
 public class Lexer implements ILexer {
 
     private final IReader reader;
-    private LexerICommandRepository commands;
-    private LexerIStateTransitions transitions;
-    private LexerIContext context = new LexerContext();
+    private ILexerCommandRepository commands;
+    private ILexerStateTransitions transitions;
+    private ILexerContext context = new LexerContext();
 
 
     /**
@@ -41,7 +41,7 @@ public class Lexer implements ILexer {
      * @param commands Command repository.
      * @param transitions State transitions.
      */
-    public Lexer(final IReader reader, final LexerICommandRepository commands, final LexerIStateTransitions transitions) {
+    public Lexer(final IReader reader, final ILexerCommandRepository commands, final ILexerStateTransitions transitions) {
         this.reader = reader;
         this.commands = commands;
         this.transitions = transitions;
@@ -57,7 +57,7 @@ public class Lexer implements ILexer {
             IReader postponeReader = new StringReader(context.getPostponeBuffer().toString());
             while (postponeReader.hasNextChars() && state != null) {
                 char c = postponeReader.readChar();
-                LexerICommand command = commands.getCommand(state, c);
+                ILexerCommand command = commands.getCommand(state, c);
                 command.execute(c, context);
                 state = transitions.getNextState(state, c);
 
@@ -66,7 +66,7 @@ public class Lexer implements ILexer {
 
             while (reader.hasNextChars() && state != null) {
                 char c = reader.readChar();
-                LexerICommand command = commands.getCommand(state, c);
+                ILexerCommand command = commands.getCommand(state, c);
                 command.execute(c, context);
                 state = transitions.getNextState(state, c);
 
@@ -78,8 +78,6 @@ public class Lexer implements ILexer {
             throw new LexerException("Method readToken failed", e);
         }
     }
-
-
 
     @Override
     public boolean hasMoreTokens() throws LexerException {

@@ -15,6 +15,7 @@ import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.core_io.IWriter;
 import it.sevenbits.formatter.lexer.core.ILexerFactory;
+import it.sevenbits.formatter.lexer.core.LexerConfigException;
 
 /**
  * Formatter implementation.
@@ -41,7 +42,7 @@ public class Formatter implements IFormatter {
      * @param out Output interface Writer.
      * @throws FormatterException ReaderException/WriterException.
      */
-    public void format(final IReader in, final IWriter out) throws FormatterException {
+    public void format(final IReader in, final IWriter out) throws FormatterException, LexerConfigException {
 
         IState state = new State("DefaultState");
         IContext context = new Context(out);

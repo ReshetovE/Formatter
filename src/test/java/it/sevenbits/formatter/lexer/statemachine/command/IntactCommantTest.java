@@ -6,6 +6,7 @@ import it.sevenbits.formatter.io.string_io.StringReader;
 import it.sevenbits.formatter.lexer.LexerConfig;
 import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.Lexer;
+import it.sevenbits.formatter.lexer.core.LexerConfigException;
 import it.sevenbits.formatter.lexer.core.LexerException;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 public class IntactCommantTest {
 
     @Test
-    public void testSimpleIntactCommand() throws LexerException {
+    public void testSimpleIntactCommand() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("a");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -30,7 +31,7 @@ public class IntactCommantTest {
     }
 
     @Test
-    public void testSimpleSecondIntactCommand() throws LexerException {
+    public void testSimpleSecondIntactCommand() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("u");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);

@@ -1,9 +1,12 @@
 package it.sevenbits.formatter.lexer.statemachine.core;
 
-import it.sevenbits.formatter.implementation.statemachine.State; /**
+import it.sevenbits.formatter.implementation.statemachine.State;
+
+/**
  * Interface for StateTransitions class.
  */
-public interface LexerIStateTransitions {
+public interface ILexerStateTransitions {
+
     /**
      * Get new state.
      * @param state Old state.

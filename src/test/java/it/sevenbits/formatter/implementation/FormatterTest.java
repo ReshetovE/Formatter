@@ -1,5 +1,6 @@
 package it.sevenbits.formatter.implementation;
 
+import it.sevenbits.formatter.implementation.core.FormatterConfigException;
 import it.sevenbits.formatter.implementation.core.FormatterException;
 import it.sevenbits.formatter.implementation.core.IFormatter;
 import it.sevenbits.formatter.io.core_io.IReader;
@@ -9,6 +10,7 @@ import it.sevenbits.formatter.io.string_io.StringWriter;
 import it.sevenbits.formatter.lexer.LexerFactory;
 import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.Lexer;
+import it.sevenbits.formatter.lexer.core.LexerConfigException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 public class FormatterTest {
 
     @Test
-    public void testBigTestFormatter() throws FormatterException {
+    public void testBigTestFormatter() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "p {" +
                         "  abc() { " +
@@ -37,7 +39,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testSimpleFormat() throws FormatterException {
+    public void testSimpleFormat() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "a;   b"
         );
@@ -50,7 +52,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testSemicolon() throws FormatterException {
+    public void testSemicolon() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "sdfsdf;dfsd"
         );
@@ -63,7 +65,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testOpenBrackets() throws FormatterException {
+    public void testOpenBrackets() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "a{" +
                         " p;" +
@@ -80,7 +82,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testCloseBrackets() throws FormatterException {
+    public void testCloseBrackets() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "a{" +
                         " p;" +
@@ -97,7 +99,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testSemicolonNewLine() throws FormatterException {
+    public void testSemicolonNewLine() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "a{" +
                         " ;p;" +
@@ -115,7 +117,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testNewLineNewLine() throws FormatterException {
+    public void testNewLineNewLine() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "a{" +
                         " \n\n;p;" +
@@ -133,7 +135,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testStringLiteral() throws FormatterException {
+    public void testStringLiteral() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "\"{};\n sdf  sdv\""
         );
@@ -146,7 +148,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testDoubleToken() throws FormatterException {
+    public void testDoubleToken() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "//ab{}\n" +
                         "{" +
@@ -163,7 +165,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testOpenMultiLineComment() throws FormatterException {
+    public void testOpenMultiLineComment() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "/* {};\n" +
                         "sdf"
@@ -178,7 +180,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testMultiLineComment() throws FormatterException {
+    public void testMultiLineComment() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "\n/*{}*5*//*"
         );
@@ -191,7 +193,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testForLoops() throws FormatterException {
+    public void testForLoops() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "for (int i = 0; i < 10; i++) {"
         );
@@ -204,7 +206,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testSecondForLoops() throws FormatterException {
+    public void testSecondForLoops() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "for {};;\n{)"
         );
@@ -217,7 +219,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void testIgnoreStringLiteral() throws FormatterException {
+    public void testIgnoreStringLiteral() throws FormatterException, FormatterConfigException, LexerConfigException {
         IReader reader = new StringReader(
                 "\"\\\"\""
         );

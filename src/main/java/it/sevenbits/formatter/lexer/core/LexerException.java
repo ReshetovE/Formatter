@@ -1,7 +1,7 @@
 package it.sevenbits.formatter.lexer.core;
 
 /**
- * Exception for Lexer
+ * Exception for Lexer.
  */
 public class LexerException extends Exception {
 

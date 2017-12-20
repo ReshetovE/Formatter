@@ -5,6 +5,7 @@ import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.io.string_io.StringReader;
 import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.Lexer;
+import it.sevenbits.formatter.lexer.core.LexerConfigException;
 import it.sevenbits.formatter.lexer.core.LexerException;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 public class LexerTest {
 
     @Test
-    public void testSimpleTokenize() throws LexerException {
+    public void testSimpleTokenize() throws LexerException, LexerConfigException {
         IReader reader = new StringReader(
                 "c"
         );
@@ -39,11 +40,11 @@ public class LexerTest {
 ////        when(reader.hasNextChars()).thenReturn(true, false);
 ////        when(reader.readChar()).thenReturn('a');
 //
-//        LexerICommand command = mock(LexerICommand.class);
-//        LexerICommandRepository commands = mock(LexerICommandRepository.class);
+//        ILexerCommand command = mock(ILexerCommand.class);
+//        ILexerCommandRepository commands = mock(ILexerCommandRepository.class);
 //        when(commands.getCommand(any(State.class), anyChar())).thenReturn(command);
 //
-//        LexerIStateTransitions transitions = mock(LexerIStateTransitions.class);
+//        ILexerStateTransitions transitions = mock(ILexerStateTransitions.class);
 //
 //
 //        ILexer lexer = new Lexer(reader, commands, transitions);
@@ -57,7 +58,7 @@ public class LexerTest {
 //    }
 
     @Test
-    public void testOpenBracket() throws LexerException {
+    public void testOpenBracket() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("a{p");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -81,7 +82,7 @@ public class LexerTest {
     }
 
     @Test
-    public void testCloseBracket() throws LexerException {
+    public void testCloseBracket() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("a}p");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -105,7 +106,7 @@ public class LexerTest {
     }
 
     @Test
-    public void testSpace() throws LexerException {
+    public void testSpace() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("; b");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -129,7 +130,7 @@ public class LexerTest {
     }
 
     @Test
-    public void testSpace2() throws LexerException {
+    public void testSpace2() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("a{ pu");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -163,7 +164,7 @@ public class LexerTest {
     }
 
     @Test
-    public void testSingleLineComment() throws LexerException {
+    public void testSingleLineComment() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("//abc");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -192,7 +193,7 @@ public class LexerTest {
     }
 
     @Test
-    public void testStar() throws LexerException {
+    public void testStar() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("*/");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -206,7 +207,7 @@ public class LexerTest {
     }
 
     @Test
-    public void testStar1() throws LexerException {
+    public void testStar1() throws LexerException, LexerConfigException {
         IReader reader = new StringReader(";");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -221,7 +222,7 @@ public class LexerTest {
     }
 
     @Test
-    public void testForTest() throws LexerException {
+    public void testForTest() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("for(");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -240,7 +241,7 @@ public class LexerTest {
     }
 
     @Test
-    public void testSecondForTest() throws LexerException {
+    public void testSecondForTest() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("fo^");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -259,7 +260,7 @@ public class LexerTest {
     }
 
     @Test
-    public void testCloseRoundBracket() throws LexerException {
+    public void testCloseRoundBracket() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("(a)");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);
@@ -283,7 +284,7 @@ public class LexerTest {
     }
 
     @Test
-    public void testIgnoreStringLiteral() throws LexerException {
+    public void testIgnoreStringLiteral() throws LexerException, LexerConfigException {
         IReader reader = new StringReader("\"\\\"\"");
         LexerConfig lexerConfig = new LexerConfig();
         ILexer lexer = new Lexer(reader, lexerConfig);

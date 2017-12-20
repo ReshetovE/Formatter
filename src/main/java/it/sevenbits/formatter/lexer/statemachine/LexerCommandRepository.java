@@ -2,8 +2,8 @@ package it.sevenbits.formatter.lexer.statemachine;
 
 import it.sevenbits.formatter.implementation.statemachine.Pair;
 import it.sevenbits.formatter.implementation.statemachine.State;
-import it.sevenbits.formatter.lexer.statemachine.core.LexerICommand;
-import it.sevenbits.formatter.lexer.statemachine.core.LexerICommandRepository;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerCommand;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerCommandRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,9 +11,9 @@ import java.util.Map;
 /**
  * Lexer command repository class.
  */
-public class LexerCommandRepository implements LexerICommandRepository {
+public class LexerCommandRepository implements ILexerCommandRepository {
 
-    private Map<Pair<State, Character>, LexerICommand> commands;
+    private Map<Pair<State, Character>, ILexerCommand> commands;
 
     /**
      * Constructor Command repository.
@@ -23,8 +23,8 @@ public class LexerCommandRepository implements LexerICommandRepository {
     }
 
     @Override
-    public LexerICommand getCommand(final State state, final char c) {
-        LexerICommand command = commands.get(new Pair<>(state, c));
+    public ILexerCommand getCommand(final State state, final char c) {
+        ILexerCommand command = commands.get(new Pair<>(state, c));
         if (command == null) {
             command = commands.get(new Pair<>(state, (Character) null));
         }
@@ -32,7 +32,7 @@ public class LexerCommandRepository implements LexerICommandRepository {
     }
 
     @Override
-    public void insert(final String state, final Character input, final LexerICommand command) {
+    public void insert(final String state, final Character input, final ILexerCommand command) {
         commands.put(new Pair<>(new State(state), input), command);
     }
 }

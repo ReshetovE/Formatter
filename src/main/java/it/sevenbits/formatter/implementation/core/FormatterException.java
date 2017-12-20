@@ -1,7 +1,7 @@
 package it.sevenbits.formatter.implementation.core;
 
 /**
- * Exception for FormatterClass.
+ * Exception for Formatter class.
  */
 public class FormatterException extends Exception {
 

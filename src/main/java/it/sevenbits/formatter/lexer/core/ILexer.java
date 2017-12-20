@@ -6,6 +6,7 @@ import it.sevenbits.formatter.implementation.core.IToken;
  * Lexer interface.
  */
 public interface ILexer {
+
     /**
      * Read token.
      * @return Token.

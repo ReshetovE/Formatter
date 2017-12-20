@@ -1,11 +1,11 @@
 package it.sevenbits.formatter.lexer.statemachine;
 
-import it.sevenbits.formatter.lexer.statemachine.core.LexerIContext;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerContext;
 
 /**
  * Context implements.
  */
-public class LexerContext implements LexerIContext {
+public class LexerContext implements ILexerContext {
 
     private String tokenName;
     private StringBuilder tokenLexeme;

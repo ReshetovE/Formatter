@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import it.sevenbits.formatter.implementation.core.FormatterConfigException;
 import it.sevenbits.formatter.implementation.statemachine.CommandRepository;
 import it.sevenbits.formatter.implementation.statemachine.StateTransitions;
 import it.sevenbits.formatter.implementation.statemachine.core.ICommand;
@@ -24,7 +25,7 @@ public class FormatterConfig {
     /**
      * Constructor formatter config class.
      */
-    public FormatterConfig() {
+    public FormatterConfig() throws FormatterConfigException {
         commands = new CommandRepository();
         transitions = new StateTransitions();
 
@@ -48,17 +49,13 @@ public class FormatterConfig {
         }
     }
 
-    private ICommand createCommand(final String nameCommand)  {
+    private ICommand createCommand(final String nameCommand) throws FormatterConfigException {
         ICommand command = null;
         String fullName = "it.sevenbits.formatter.implementation.statemachine.command." + nameCommand;
         try {
             command = (ICommand) Class.forName(fullName).newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new FormatterConfigException("Error when creating commands", e);
         }
         return command;
     }

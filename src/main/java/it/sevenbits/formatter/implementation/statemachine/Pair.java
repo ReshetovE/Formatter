@@ -11,22 +11,6 @@ public class Pair<T, U> {
     private final U second;
 
     /**
-     * Gets the first element of the pair.
-     * @return the first element
-     */
-    public T getFirst() {
-        return first;
-    }
-
-    /**
-     * Gets the second element of the pair.
-     * @return the second element
-     */
-    public U getSecond() {
-        return second;
-    }
-
-    /**
      * Creates the pair.
      * @param first first element
      * @param second second element

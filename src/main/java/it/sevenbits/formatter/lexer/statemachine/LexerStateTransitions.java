@@ -2,7 +2,7 @@ package it.sevenbits.formatter.lexer.statemachine;
 
 import it.sevenbits.formatter.implementation.statemachine.Pair;
 import it.sevenbits.formatter.implementation.statemachine.State;
-import it.sevenbits.formatter.lexer.statemachine.core.LexerIStateTransitions;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerStateTransitions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * State transitions implementation.
  */
-public class LexerStateTransitions implements LexerIStateTransitions {
+public class LexerStateTransitions implements ILexerStateTransitions {
 
     private Map<Pair<State, Character>, State> states;
 

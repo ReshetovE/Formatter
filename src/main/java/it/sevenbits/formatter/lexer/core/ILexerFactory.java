@@ -7,6 +7,7 @@ import it.sevenbits.formatter.lexer.LexerConfig;
  * Lexer factory interface.
  */
 public interface ILexerFactory {
+
     /**
      * Create lexer.
      * @param in Input interface Reader.

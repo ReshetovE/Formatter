@@ -5,11 +5,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import it.sevenbits.formatter.implementation.statemachine.State;
+import it.sevenbits.formatter.lexer.core.LexerConfigException;
 import it.sevenbits.formatter.lexer.statemachine.LexerCommandRepository;
 import it.sevenbits.formatter.lexer.statemachine.LexerStateTransitions;
-import it.sevenbits.formatter.lexer.statemachine.core.LexerICommand;
-import it.sevenbits.formatter.lexer.statemachine.core.LexerICommandRepository;
-import it.sevenbits.formatter.lexer.statemachine.core.LexerIStateTransitions;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerCommand;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerCommandRepository;
+import it.sevenbits.formatter.lexer.statemachine.core.ILexerStateTransitions;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,13 +20,13 @@ import java.io.InputStreamReader;
  */
 public class LexerConfig {
 
-    private static LexerICommandRepository commands;
-    private static LexerIStateTransitions transitions;
+    private static ILexerCommandRepository commands;
+    private static ILexerStateTransitions transitions;
 
     /**
      * Constructor lexer config.
      */
-    public LexerConfig() {
+    public LexerConfig() throws LexerConfigException {
         commands = new LexerCommandRepository();
         transitions = new LexerStateTransitions();
 
@@ -69,17 +70,13 @@ public class LexerConfig {
      * @param nameCommand Name class command.
      * @return New Command.
      */
-    private LexerICommand createCommand(final String nameCommand)  {
-        LexerICommand command = null;
+    private ILexerCommand createCommand(final String nameCommand) throws LexerConfigException {
+        ILexerCommand command = null;
                 String fullName = "it.sevenbits.formatter.lexer.statemachine.command." + nameCommand;
         try {
-            command = (LexerICommand) Class.forName(fullName).newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            command = (ILexerCommand) Class.forName(fullName).newInstance();
+        } catch (Exception e) {
+            throw new LexerConfigException("Error when creating commands", e);
         }
         return command;
     }
@@ -88,7 +85,7 @@ public class LexerConfig {
      * Get map command.
      * @return Command.
      */
-    public LexerICommandRepository getCommand() {
+    public ILexerCommandRepository getCommand() {
         return commands;
     }
 
@@ -96,7 +93,7 @@ public class LexerConfig {
      * Get map state.
      * @return State.
      */
-    public LexerIStateTransitions getState() {
+    public ILexerStateTransitions getState() {
         return transitions;
     }
 }
