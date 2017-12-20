@@ -10,6 +10,7 @@ import it.sevenbits.formatter.implementation.statemachine.core.IState;
 import it.sevenbits.formatter.implementation.statemachine.State;
 import it.sevenbits.formatter.implementation.statemachine.StateTransitions;
 import it.sevenbits.formatter.io.core_io.IReader;
+import it.sevenbits.formatter.lexer.LexerConfig;
 import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.core_io.IWriter;
@@ -41,10 +42,11 @@ public class Formatter implements IFormatter {
      */
     public void format(final IReader in, final IWriter out) throws FormatterException {
 
-         IState state = new State("DefaultState");
-         IContext context = new Context(out);
+        IState state = new State("DefaultState");
+        IContext context = new Context(out);
+        LexerConfig lexerConfig = new LexerConfig();
 
-         ILexer lexer = lexerFactory.createLexer(in);
+        ILexer lexer = lexerFactory.createLexer(in, lexerConfig);
          try {
              while (lexer.hasMoreTokens()) {
                  IToken token = lexer.readToken();

@@ -19,6 +19,7 @@ public class Main {
      */
 
     public static void main(final String[] args) throws Exception {
+
         try (
             FileReader in = new FileReader(args[0]);
             FileWriter out = new FileWriter(args[1])

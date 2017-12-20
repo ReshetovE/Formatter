@@ -11,4 +11,12 @@ public interface LexerIStateTransitions {
      * @return New state.
      */
     State getNextState(State state, char c);
+
+    /**
+     * Insert new pair for get new state.
+     * @param stateName Name current state.
+     * @param input Char.
+     * @param state New state.
+     */
+    void insert(String stateName, Character input, State state);
 }

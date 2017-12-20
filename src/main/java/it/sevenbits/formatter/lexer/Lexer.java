@@ -7,9 +7,7 @@ import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.string_io.StringReader;
 import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.core.LexerException;
-import it.sevenbits.formatter.lexer.statemachine.LexerCommandRepository;
 import it.sevenbits.formatter.lexer.statemachine.LexerContext;
-import it.sevenbits.formatter.lexer.statemachine.LexerStateTransitions;
 import it.sevenbits.formatter.lexer.statemachine.core.LexerICommand;
 import it.sevenbits.formatter.lexer.statemachine.core.LexerICommandRepository;
 import it.sevenbits.formatter.lexer.statemachine.core.LexerIStateTransitions;
@@ -29,9 +27,12 @@ public class Lexer implements ILexer {
     /**
      * Constructor Lexer.
      * @param reader Reader.
+     * @param lexerConfig Lexer config.
      */
-    public Lexer(final IReader reader) {
-        this(reader, new LexerCommandRepository(), new LexerStateTransitions());
+    public Lexer(final IReader reader, final LexerConfig lexerConfig) {
+        this.reader = reader;
+        this.commands = lexerConfig.getCommand();
+        this.transitions = lexerConfig.getState();
     }
 
     /**
@@ -63,7 +64,8 @@ public class Lexer implements ILexer {
             }
             context.createNewPostpone();
 
-            while (reader.hasNextChars() && state != null) {
+            assert state != null;
+            while (reader.hasNextChars() && state.toString().equals("Final")) {
                 char c = reader.readChar();
                 LexerICommand command = commands.getCommand(state, c);
                 command.execute(c, context);

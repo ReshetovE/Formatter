@@ -10,7 +10,7 @@ import it.sevenbits.formatter.lexer.core.ILexerFactory;
 public class LexerFactory implements ILexerFactory {
 
     @Override
-    public ILexer createLexer(final IReader in) {
-        return new Lexer(in);
+    public ILexer createLexer(final IReader in, final LexerConfig lexerConfig) {
+        return new Lexer(in, lexerConfig);
     }
 }

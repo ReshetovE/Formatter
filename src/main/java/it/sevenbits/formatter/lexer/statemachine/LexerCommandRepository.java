@@ -3,19 +3,7 @@ package it.sevenbits.formatter.lexer.statemachine;
 import it.sevenbits.formatter.implementation.statemachine.Pair;
 import it.sevenbits.formatter.implementation.statemachine.State;
 import it.sevenbits.formatter.lexer.statemachine.command.AppendPostponeCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.IgnoreStringLiteralCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.CloseMultiLineCommentCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.CloseBracketCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.CloseRoundBracketCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.ForLoopsCommand;
 import it.sevenbits.formatter.lexer.statemachine.command.IntactCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.NewLineCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.OpenBracketCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.OpenMultiLineCommentCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.SemicolonCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.SingleLineCommentCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.SpaceCommand;
-import it.sevenbits.formatter.lexer.statemachine.command.StringLiteralCommand;
 import it.sevenbits.formatter.lexer.statemachine.core.LexerICommand;
 import it.sevenbits.formatter.lexer.statemachine.core.LexerICommandRepository;
 
@@ -27,14 +15,27 @@ import java.util.Map;
  */
 public class LexerCommandRepository implements LexerICommandRepository {
 
-    private final Map<Pair<State, Character>, LexerICommand> commands = new HashMap<>();
+    private Map<Pair<State, Character>, LexerICommand> commands;
 
     /**
      * Constructor Command repository.
      */
     public LexerCommandRepository() {
+        commands = new HashMap<>();
 
-        //Default state.
+        commands.put(new Pair<>(new State("Default"), null), new IntactCommand());
+        commands.put(new Pair<>(new State("BackSlash"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("IgnoreStringLiteral"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("Slash"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("SingleLineComment"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("OpenMultiLineComment"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("Star"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("CloseMultiLineComment"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("FFromLoop"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("FoFromLoop"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("FullLoop"), null), new AppendPostponeCommand());
+
+        /*//Default state.
         commands.put(new Pair<>(new State("Default"), null), new IntactCommand());
         commands.put(new Pair<>(new State("Default"), ';'), new SemicolonCommand());
         commands.put(new Pair<>(new State("Default"), '{'), new OpenBracketCommand());
@@ -79,7 +80,7 @@ public class LexerCommandRepository implements LexerICommandRepository {
         commands.put(new Pair<>(new State("FoFromLoop"), 'r'), new ForLoopsCommand());
         commands.put(new Pair<>(new State("FoFromLoop"), null), new AppendPostponeCommand());
 
-        commands.put(new Pair<>(new State("FullLoop"), null), new AppendPostponeCommand());
+        commands.put(new Pair<>(new State("FullLoop"), null), new AppendPostponeCommand());*/
 
     }
 
@@ -90,5 +91,10 @@ public class LexerCommandRepository implements LexerICommandRepository {
             command = commands.get(new Pair<>(state, (Character) null));
         }
         return command;
+    }
+
+    @Override
+    public void insert(final String state, final Character input, final LexerICommand command) {
+        commands.put(new Pair<>(new State(state), input), command);
     }
 }

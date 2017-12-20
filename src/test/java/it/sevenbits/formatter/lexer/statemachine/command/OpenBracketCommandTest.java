@@ -3,6 +3,7 @@ package it.sevenbits.formatter.lexer.statemachine.command;
 import it.sevenbits.formatter.implementation.core.IToken;
 import it.sevenbits.formatter.io.core_io.IReader;
 import it.sevenbits.formatter.io.string_io.StringReader;
+import it.sevenbits.formatter.lexer.LexerConfig;
 import it.sevenbits.formatter.lexer.core.ILexer;
 import it.sevenbits.formatter.lexer.Lexer;
 import it.sevenbits.formatter.lexer.core.LexerException;
@@ -17,7 +18,8 @@ public class OpenBracketCommandTest {
     @Test
     public void testSimpleSemicolonCommand() throws LexerException {
         IReader reader = new StringReader("{");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -30,7 +32,8 @@ public class OpenBracketCommandTest {
     @Test
     public void testNotEqualsSemicolonCommand() throws LexerException {
         IReader reader = new StringReader("{");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();

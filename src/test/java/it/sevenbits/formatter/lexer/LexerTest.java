@@ -18,30 +18,15 @@ public class LexerTest {
     @Test
     public void testSimpleTokenize() throws LexerException {
         IReader reader = new StringReader(
-                "a;" +
-                        "  "
+                "с"
         );
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
         assertEquals("Char", token.getName());
-        assertEquals("a", token.getLexeme());
-
-        assertTrue(lexer.hasMoreTokens());
-        token = lexer.readToken();
-        assertEquals("Semicolon", token.getName());
-        assertEquals(";", token.getLexeme());
-
-        assertTrue(lexer.hasMoreTokens());
-        token = lexer.readToken();
-        assertEquals("Space", token.getName());
-        assertEquals(" ", token.getLexeme());
-
-        assertTrue(lexer.hasMoreTokens());
-        token = lexer.readToken();
-        assertEquals("Space", token.getName());
-        assertEquals(" ", token.getLexeme());
+        assertEquals("c", token.getLexeme());
 
         assertFalse(lexer.hasMoreTokens());
 
@@ -73,7 +58,8 @@ public class LexerTest {
     @Test
     public void testOpenBracket() throws LexerException {
         IReader reader = new StringReader("a{p");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -96,7 +82,8 @@ public class LexerTest {
     @Test
     public void testCloseBracket() throws LexerException {
         IReader reader = new StringReader("a}p");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -119,7 +106,8 @@ public class LexerTest {
     @Test
     public void testSpace() throws LexerException {
         IReader reader = new StringReader("; b");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -142,7 +130,8 @@ public class LexerTest {
     @Test
     public void testSpace2() throws LexerException {
         IReader reader = new StringReader("a{ pu");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -175,7 +164,8 @@ public class LexerTest {
     @Test
     public void testSingleLineComment() throws LexerException {
         IReader reader = new StringReader("//abc");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -203,7 +193,8 @@ public class LexerTest {
     @Test
     public void testStar() throws LexerException {
         IReader reader = new StringReader("*/");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -216,7 +207,8 @@ public class LexerTest {
     @Test
     public void testStar1() throws LexerException {
         IReader reader = new StringReader(";");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -230,7 +222,8 @@ public class LexerTest {
     @Test
     public void testForTest() throws LexerException {
         IReader reader = new StringReader("for(");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -248,7 +241,8 @@ public class LexerTest {
     @Test
     public void testSecondForTest() throws LexerException {
         IReader reader = new StringReader("fo^");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -266,7 +260,8 @@ public class LexerTest {
     @Test
     public void testCloseRoundBracket() throws LexerException {
         IReader reader = new StringReader("(a)");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();
@@ -289,7 +284,8 @@ public class LexerTest {
     @Test
     public void testIgnoreStringLiteral() throws LexerException {
         IReader reader = new StringReader("\"\\\"\"");
-        ILexer lexer = new Lexer(reader);
+        LexerConfig lexerConfig = new LexerConfig();
+        ILexer lexer = new Lexer(reader, lexerConfig);
 
         assertTrue(lexer.hasMoreTokens());
         IToken token = lexer.readToken();

@@ -18,7 +18,8 @@ public class LexerStateTransitions implements LexerIStateTransitions {
      * Constructor state transitions.
      */
     public LexerStateTransitions() {
-
+        states.put(new Pair<>(new State("Default"), null), new State("Final"));
+/*
         states.put(new Pair<>(new State("Default"), '\\'), new State("BackSlash"));
         states.put(new Pair<>(new State("BackSlash"), '"'), new State("IgnoreStringLiteral"));
 
@@ -30,7 +31,7 @@ public class LexerStateTransitions implements LexerIStateTransitions {
         states.put(new Pair<>(new State("Slash"), '/'), new State("SingleLineComment"));
         states.put(new Pair<>(new State("Slash"), '*'), new State("OpenMultiLineComment"));
         states.put(new Pair<>(new State("Default"), '*'), new State("Star"));
-        states.put(new Pair<>(new State("Star"), '/'), new State("CloseMultiLineComment"));
+        states.put(new Pair<>(new State("Star"), '/'), new State("CloseMultiLineComment"));*/
 
     }
 
@@ -41,5 +42,10 @@ public class LexerStateTransitions implements LexerIStateTransitions {
             nextState = states.get(new Pair<>(state, (Character) null));
         }
         return nextState;
+    }
+
+    @Override
+    public void insert(final String stateName, final Character input, final State state) {
+        states.put(new Pair<>(new State(stateName), input), state);
     }
 }

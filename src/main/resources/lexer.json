@@ -1,0 +1,67 @@
+[
+  {
+    "State": "Default",
+    "Actions": [
+      {
+        "Input": null,
+        "State": "Default",
+        "Command": "OpenBracketCommand"
+      },
+      {
+        "Input": "\u003b",
+        "State": "Final",
+        "Command": "SemicolonCommand"
+      },
+      {
+        "Input": "\u007b",
+        "State": "Default",
+        "Command": "OpenBracketCommand"
+      },
+      {
+        "Input": "\u007d",
+        "State": "Default",
+        "Command": "CloseBracketCommand"
+      },
+      {
+        "Input": "\u0020",
+        "State": "Default",
+        "Command": "SpaceCommand"
+      },
+      {
+        "Input": "\u000a",
+        "State": "Default",
+        "Command": "NewLineCommand"
+      },
+      {
+        "Input": "\u0022",
+        "State": "Default",
+        "Command": "StringLiteralCommand"
+      },
+      {
+        "Input": "\u002f",
+        "State": "Slash",
+        "Command": "IntactCommand"
+      },
+      {
+        "Input": "\u002a",
+        "State": "Star",
+        "Command": "IntactCommand"
+      },
+      {
+        "Input": "\u0066",
+        "State": "FFromLoop",
+        "Command": "IntactCommand"
+      },
+      {
+        "Input": "\u0029",
+        "State": "Default",
+        "Command": "CloseRoundBracketCommand"
+      },
+      {
+        "Input": "\u005c",
+        "State": "BackSlash",
+        "Command": "IntactCommand"
+      }
+    ]
+  }
+]
